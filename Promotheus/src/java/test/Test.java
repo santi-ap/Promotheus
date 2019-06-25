@@ -14,6 +14,9 @@ public class Test {
     //Dacord linea 14
 
     //linea 14 Santi
+    public void testing(){
+        //test method
+    }
 
     
 }
