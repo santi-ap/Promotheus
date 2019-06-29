@@ -12,21 +12,19 @@
         <h:form>
             <p:growl id="growl" showDetail="true" life="2000" />  
             <h:panelGrid columns="1">
-                <h:outputLabel value="Mensaje"/>
+                <h:outputLabel value="Correo"/>
                 <p:inputText value="#{loginController.mensaje}" />
-                
-                <h:outputLabel value="Usuario"/>
-                <p:inputText value="#{loginController.usuario}" />
-                
+
                 <h:outputLabel value="Clave"/>
+                <p:inputText value="#{loginController.usuario}" />
+
+                <h:outputLabel value="Volver a ingresar clave"/>
                 <p:password value="#{loginController.clave}" />
-                
+
                 <h:outputLabel value=""/>
-                
-                <p:commandButton value="Ingresar" 
-                                 action="#{loginController.ingresar()}"
-                                 update="@form"/>
-                
+
+                <p:commandButton value="Aceptar" action="#{loginController.ingresar()}"/>
+
             </h:panelGrid>
         </h:form>
     </body>
