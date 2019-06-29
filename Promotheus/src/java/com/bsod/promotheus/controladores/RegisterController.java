@@ -47,7 +47,7 @@ public class RegisterController extends Controller {
 
     
 
-    public Usuario registrar() {
+    public String registrar() {
         ServicioUsuario su = new ServicioUsuario();
         
         FacesContext context = FacesContext.getCurrentInstance();
@@ -62,9 +62,14 @@ public class RegisterController extends Controller {
             u.setPassUsuario(this.getPassInput());
             su.insert(u);
             System.out.println("Usuario insertado a BD");
+            return this.redirectLandingPage();
         }
 
-        return new Usuario();
+     return null;   
+    }
+    
+    public String redirectLandingPage(){
+        return "registeredLandingPage.xhtml?faces-redirect=true";
     }
 
 }
