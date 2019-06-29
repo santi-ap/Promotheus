@@ -20,11 +20,15 @@ public class TesterSanti {
     public static void main(String[] args) {
         ServicioUsuario su = new ServicioUsuario();
 //        System.out.println(su.selectAll("nombreUsuario", "user1"));
-        Usuario u = new Usuario("user8","8@8","pass8");
-        su.insert(u);
+
+      
 //        su.update("nombreUsuario", "Santi", "correoUsuario", "2@2");
 //        System.out.println(su.select("nombreUsuario", "correoUsuario", "2@2"));
+
         //su.delete("correoUsuario", "2@2");
+
+//        su.delete("correoUsuario", "2@2");
+
     }
     
 }

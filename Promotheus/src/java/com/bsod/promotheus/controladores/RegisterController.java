@@ -4,22 +4,26 @@
  * and open the template in the editor.
  */
 package com.bsod.promotheus.controladores;
-
 import com.bsod.promotheus.usuario.Usuario;
+import javax.faces.application.FacesMessage;
 
 /**
  *
  * @author DacordMachine
  */
 public class RegisterController extends Controller {
+    
+    
 
     public RegisterController(String correoInput, String passInput) {
         super(correoInput, passInput);
     }
+
     
-    private Usuario registrar(){
-        
+
+    public Usuario registrar() {
+
         return new Usuario();
     }
-    
+
 }
