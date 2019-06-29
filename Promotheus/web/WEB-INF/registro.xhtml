@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h1>Ingreso al Sistema</h1>
+        <h:form>
+            <p:growl id="growl" showDetail="true" life="2000" />  
+            <h:panelGrid columns="1">
+                <h:outputLabel value="Mensaje"/>
+                <p:inputText value="#{loginController.mensaje}" />
+                
+                <h:outputLabel value="Usuario"/>
+                <p:inputText value="#{loginController.usuario}" />
+                
+                <h:outputLabel value="Clave"/>
+                <p:password value="#{loginController.clave}" />
+                
+                <h:outputLabel value=""/>
+                
+                <p:commandButton value="Ingresar" 
+                                 action="#{loginController.ingresar()}"
+                                 update="@form"/>
+                
+            </h:panelGrid>
+        </h:form>
+    </body>
+</html>
