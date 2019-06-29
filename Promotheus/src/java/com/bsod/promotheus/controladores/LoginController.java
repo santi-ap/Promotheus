@@ -21,10 +21,17 @@ public class LoginController extends Controller {
         super(correoInput, passInput);
     }
 
+    public LoginController() {
+    }
+
    
     private Usuario Logear(String correoInput, String passInput){
         
         return new Usuario();
+    }
+    
+    public String botonRegistro(){// metodo para llevar a pagina de registro
+        return "registerForm.xhtml?faces-redirect=true";
     }
     
 }

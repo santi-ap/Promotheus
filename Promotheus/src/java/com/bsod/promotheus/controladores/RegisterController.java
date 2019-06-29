@@ -50,7 +50,7 @@ public class RegisterController extends Controller {
     public String registrar() {
         ServicioUsuario su = new ServicioUsuario();//se insancia un nuevo usuario
         FacesContext context = FacesContext.getCurrentInstance();//se instancia un nuevo mensaje para el web app
-        
+
         //este primer IF es para asegurarse de que todos los campos estan llenos
         if ((this.getCorreoInput().equals("")) || (this.getNombreInput().equals("")) || (this.getPassDosInput().equals("")) || (this.getPassInput().equals(""))) {
             //si no estan llenos, muestra un mensaje que dice que no se llenaron todos los campos
@@ -85,5 +85,10 @@ public class RegisterController extends Controller {
     public String redirectLandingPage() {
         return "registeredLandingPage.xhtml?faces-redirect=true";
     }
+    
+    public String cancelarRegistro(){
+        return "index.xhtml?faces-redirect=true";
+    }
+    
 
 }

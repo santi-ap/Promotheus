@@ -4,47 +4,50 @@
 
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="google-signin-client_id" content="129219007264-n3p15j8v62dumbo0m9mg7f4qikk0s2uk.apps.googleusercontent.com"/> <!-- Specify Client ID -->
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="google-signin-client_id" content="129219007264-n3p15j8v62dumbo0m9mg7f4qikk0s2uk.apps.googleusercontent.com"/> <!-- Specify Client ID -->
 
-<title>Login</title>
-</h:head>
-<h:body>
-<script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
         <center>
-        <h:form>
-            <p:growl id="growl" showDetail="true" life="2000" />  
-            <h:panelGrid columns="3">
-                
-                <h:outputLabel value="Correo Electrónico"/>
-                <p:inputText id="correo" value="" required="true"/>
-               <p:message for="correo" />
-                
-                <h:outputLabel value="Contraseña"/>
-                <p:password id="contraseña" value="" required="true"/>
-                <p:message for="contraseña" />
-                
+            <h:form>
+                <p:growl id="growl" showDetail="true" life="2000" />  
+                <h:panelGrid columns="3">
+
+                    <h:outputLabel value="Correo Electrónico"/>
+                    <p:inputText id="correo" value="#{loginController.correoInput}"/>
+                    <p:message for="correo" />
+
+                    <h:outputLabel value="Contraseña"/>
+                    <p:password id="contraseña" value="#{loginController.passInput}"/>
+                    <p:message for="contraseña" />
+
+
+                </h:panelGrid>
+
                 <p:commandButton value="Log in" 
-                         
+
                                  update="@form"/>
-            </h:panelGrid>
-            <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- button -->
-<img id="myImg"></img> <!-- this is specifying to the page that there's gonna be a photo called myImg-->
-      <p id="name"></p> 
-      <div id="status"></div>
- <script type="text/javascript"> <!-- this is to create a javascript space-->
-      function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      var imageurl=profile.getImageUrl();
-      var name=profile.getName();
-      var email=profile.getEmail();
-      document.getElementById("myImg").src = imageurl; <!-- -->
-      document.getElementById("name").innerHTML = name;
-      document.getElementById("myP").style.visibility = "hidden";
-   }
-   </script>
+                <p:commandButton value="Registrarse" action="registerForm.xhtml?faces-redirect=true"/>
+                <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- button -->
+                <img id="myImg"></img> <!-- this is specifying to the page that there's gonna be a photo called myImg-->
+                <p id="name"></p> 
+                <div id="status"></div>
+                <script type="text/javascript"><!-- this is to create a javascrip                     t space-->
+                    function onSignIn(goo                     gleUser) {
+                    var profile = googleUser.getBasic                     Profile();
+                    var imageurl = profile.getI                     mageUrl();
+                    var name = profile.getName();
+                    var email = profile.g                     etEmail();
+                    document.getElementById("myImg").src = imageurl;<!-- -->
+                    document.getElementById("name").innerHT                     ML = name;
+                    document.getElementById("myP").style.visibility = "hid                    den";
+                    }
+ </script>
    <button onclick="myFunction()">Sign Out</button>
    <script>
       function myFunction() {
