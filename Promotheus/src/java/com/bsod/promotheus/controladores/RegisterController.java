@@ -47,15 +47,15 @@ public class RegisterController extends Controller {
 
     
 
-    public String registrar() {
+    public String registrar() {// metodo revisa si ya existe el correo y agregar datos a BD
         ServicioUsuario su = new ServicioUsuario();
         
         FacesContext context = FacesContext.getCurrentInstance();
         
-        if (super.existeCorreo(this.getCorreoInput())){
+        if (super.existeCorreo(this.getCorreoInput())){// si existe el correo retorna mensaje
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El correo ya se ha usado", "Utilizar otro correo"));
             System.out.println("Ya exsite");
-        }else{
+        }else{// se crea un usario y se agrega a la BD. Despues lleva al usuario al landing opage
             Usuario u = new Usuario();
             u.setNombreUsuario(this.getNombreInput());
             u.setCorreoUsuario(this.getCorreoInput());
@@ -71,5 +71,10 @@ public class RegisterController extends Controller {
     public String redirectLandingPage(){
         return "registeredLandingPage.xhtml?faces-redirect=true";
     }
+    
+    public String cancelarRegistro(){
+        return "index.xhtml?faces-redirect=true";
+    }
+    
 
 }
