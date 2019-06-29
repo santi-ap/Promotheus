@@ -6,14 +6,23 @@
 package com.bsod.promotheus.controladores;
 
 import com.bsod.promotheus.usuario.Usuario;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author DacordMachine
  */
+@ManagedBean(name = "loginController")
+@SessionScoped
 public class LoginController extends Controller {
-    
-    private Usuario Logear(){
+
+    public LoginController(String correoInput, String passInput) {
+        super(correoInput, passInput);
+    }
+
+   
+    private Usuario Logear(String correoInput, String passInput){
         
         return new Usuario();
     }

@@ -19,6 +19,10 @@ public class RegisterController extends Controller {
     String corBD = "i";//replace i with db query
     FacesContext context = FacesContext.getCurrentInstance();
 
+    public RegisterController(String correoInput, String passInput) {
+        super(correoInput, passInput);
+    }
+
     public void RevisarCorreo() {
         if(corIn.equals(corBD)){
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El correo ya se ha utilizado","Insertar otro correo"));
@@ -26,9 +30,9 @@ public class RegisterController extends Controller {
             
         }
     }
-
-    private Usuario registrar() {
-
+    
+    public Usuario registrar(){
+        
         return new Usuario();
     }
 

@@ -15,7 +15,10 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.primefaces-6.2.jar-1}</file>
+                    <file>${file.reference.mysql-connector-java-8.0.16.jar-1}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.mysql-connector-java-8.0.16.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
