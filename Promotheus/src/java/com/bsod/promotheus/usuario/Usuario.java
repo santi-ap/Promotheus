@@ -10,6 +10,7 @@ package com.bsod.promotheus.usuario;
  *
  * @author DacordMachine
  */
+
 public class Usuario {
     
     private String nombreUsuario;

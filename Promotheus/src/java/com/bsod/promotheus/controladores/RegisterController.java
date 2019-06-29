@@ -12,6 +12,10 @@ import com.bsod.promotheus.usuario.Usuario;
  * @author DacordMachine
  */
 public class RegisterController extends Controller {
+
+    public RegisterController(String correoInput, String passInput) {
+        super(correoInput, passInput);
+    }
     
     private Usuario registrar(){
         

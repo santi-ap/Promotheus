@@ -13,6 +13,29 @@ public abstract class Controller {
     
     private String correoInput;
     private String passInput;
+
+    public Controller(String correoInput, String passInput) {
+        this.correoInput = correoInput;
+        this.passInput = passInput;
+    }
+
+    public String getCorreoInput() {
+        return correoInput;
+    }
+
+    public void setCorreoInput(String correoInput) {
+        this.correoInput = correoInput;
+    }
+
+    public String getPassInput() {
+        return passInput;
+    }
+
+    public void setPassInput(String passInput) {
+        this.passInput = passInput;
+    }
+    
+    
     
     private boolean existeCorreo(String correoInput){
         
