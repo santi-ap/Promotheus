@@ -15,11 +15,11 @@ import java.sql.SQLException;
  */
 public abstract class Servicio {
     
-    private String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private String DB_URL = "jdbc:mysql://ulatina3.ceuol7o4t0su.us-east-2.rds.amazonaws.com:3306/AWS Test 1";
-    private String USER = "promouser";
-    private String PASS = "123456";
-    private Connection conn = null;
+     String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+     String DB_URL = "jdbc:mysql://ulatina3.ceuol7o4t0su.us-east-2.rds.amazonaws.com:3306/AWS Test 1";
+     String USER = "promouser";
+     String PASS = "123456";
+     Connection conn = null;
     
     protected void conectar(){
         try{
