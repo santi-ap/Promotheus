@@ -2,11 +2,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+<h:head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="google-signin-client_id" content="129219007264-n3p15j8v62dumbo0m9mg7f4qikk0s2uk.apps.googleusercontent.com"/> <!-- Specify Client ID -->
+
+<title>Login</title>
+</h:head>
+<h:body>
+<script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
+
+<div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- button -->
+<img id="myImg"></img> <!-- this is specifying to the page that there's gonna be a photo called myImg-->
+      <p id="name"></p> 
+      <div id="status"></div>
+ <script type="text/javascript"> <!-- this is to create a javascript space-->
+      function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      var imageurl=profile.getImageUrl();
+      var name=profile.getName();
+      var email=profile.getEmail();
+      document.getElementById("myImg").src = imageurl; <!-- -->
+      document.getElementById("name").innerHTML = name;
+      document.getElementById("myP").style.visibility = "hidden";
+   }
+   </script>
+   <button onclick="myFunction()">Sign Out</button>
+   <script>
+      function myFunction() {
+      gapi.auth2.getAuthInstance().disconnect();
+      location.reload();
+   }
+   </script>
+</h:body>
 </html>
+
 
