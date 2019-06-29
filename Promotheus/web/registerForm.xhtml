@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head >
+        <title>Registro Promotheus</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head >
+    <h:body style="background-color:teal;">
+        <center>
+            <h:form>
+                <!--<p:growl id="growl" showDetail="true" sticky="true" />--> 
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+                <style type="text/css">
+                    .ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
+                        text-align: center;
+                    }
+                </style>
+
+
+                <h3 style="margin-top:0">Registro</h3>
+                <p:panelGrid columns="2">
+                    <f:facet name="header">
+                        <h3>Registro</h3>
+                    </f:facet>
+
+                    <h:outputText value="Nombre:" />
+                    <p:inputText value="#{RegisterController.nombreInput}" />
+
+                    <h:outputText value="Correo:" />
+                    <p:inputText value="#{RegisterController.correoInput}" />
+
+                    <h:outputText value="Contrasenna:" />
+                    <p:password  value="#{RegisterController.passInput}" />
+                    
+                    <h:outputText value="Repetir Contrasenna:" />
+                    <p:password  value="#{RegisterController.passDosInput}" />
+
+                </p:panelGrid>
+                <br></br>
+                <p:commandButton value="Register" action="#{RegisterController.registrar()}" update="@form"/>
+            </h:form>
+        </center>
+    </h:body>
+</html>
