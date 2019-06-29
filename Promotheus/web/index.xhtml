@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,8 +13,22 @@
 </h:head>
 <h:body>
 <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
-
-<div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- button -->
+        <center>
+        <h:form>
+            <p:growl id="growl" showDetail="true" life="2000" />  
+            <h:panelGrid columns="2">
+                
+                <h:outputLabel value="Correo Electrónico"/>
+                <p:inputText value="" />
+                
+                <h:outputLabel value="Contraseña"/>
+                <p:password value="" />
+                
+                <p:commandButton value="Log in" 
+                         
+                                 update="@form"/>
+            </h:panelGrid>
+            <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- button -->
 <img id="myImg"></img> <!-- this is specifying to the page that there's gonna be a photo called myImg-->
       <p id="name"></p> 
       <div id="status"></div>
@@ -34,7 +50,9 @@
       location.reload();
    }
    </script>
-</h:body>
+        </h:form>
+        </center>
+    </h:body>
 </html>
 
 
