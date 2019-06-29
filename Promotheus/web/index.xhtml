@@ -16,13 +16,15 @@
         <center>
         <h:form>
             <p:growl id="growl" showDetail="true" life="2000" />  
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 
                 <h:outputLabel value="Correo Electrónico"/>
-                <p:inputText value="" />
+                <p:inputText id="correo" value="" required="true"/>
+               <p:message for="correo" />
                 
                 <h:outputLabel value="Contraseña"/>
-                <p:password value="" />
+                <p:password id="contraseña" value="" required="true"/>
+                <p:message for="contraseña" />
                 
                 <p:commandButton value="Log in" 
                          

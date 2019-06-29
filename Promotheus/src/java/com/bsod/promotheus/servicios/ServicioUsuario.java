@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ServicioUsuario extends Servicio implements InterfaceDAO{
     
     /**
-     * santiago do 
+     * SELECT queBuscamos FROM usuario WHERE queColumna = queValor;
      * @param queBuscamos 
      * @param queColumna
      * @param queValor
