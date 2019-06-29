@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ServicioUsuario extends Servicio implements InterfaceDAO{
     
     /**
-     * santiago do 
+     * SELECT queBuscamos FROM usuario WHERE queColumna = queValor;
      * @param queBuscamos 
      * @param queColumna
      * @param queValor
@@ -159,10 +159,9 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO{
             //STEP 3.1: Extract data from result set
             if(rs.next()){
                 //Retrieve by column name
-                listaDatosUsuario.add(rs.getString("idUsuario"));
+                listaDatosUsuario.add(rs.getString("correoUsuario"));
                 listaDatosUsuario.add(rs.getString("nombreUsuario"));
-                listaDatosUsuario.add(rs.getString("contrasennaUsuario"));
-                listaDatosUsuario.add(rs.getString("tipoUsuario"));
+                listaDatosUsuario.add(rs.getString("passUsuario"));
             }else{//si no encuentra a un usuario con los parametros especificados, va a retornar un un String avisando que no se encontro el usuario
                 listaDatosUsuario.add("noUserFound");
             return listaDatosUsuario;
