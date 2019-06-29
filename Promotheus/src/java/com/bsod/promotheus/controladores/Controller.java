@@ -56,7 +56,7 @@ public abstract class Controller {
     
     private boolean verificarPass(String passInput, String passDosInput){
         
-        return true;
+        return (passInput.equals(passDosInput));
         
     }
     
