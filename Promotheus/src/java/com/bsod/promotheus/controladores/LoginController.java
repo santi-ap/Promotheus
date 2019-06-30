@@ -5,9 +5,12 @@
  */
 package com.bsod.promotheus.controladores;
 
+import com.bsod.promotheus.servicios.ServicioUsuario;
 import com.bsod.promotheus.usuario.Usuario;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -25,9 +28,31 @@ public class LoginController extends Controller {
     }
 
    
-    private Usuario Logear(String correoInput, String passInput){
+    public String Logear(){
         
-        return new Usuario();
+        FacesContext context = FacesContext.getCurrentInstance();
+        //Verifica que los espacios no estén vacíos
+        if (this.getCorreoInput().equals("") || this.getPassInput().equals("")){
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Favor llenar todos los campos"));    
+        } else {
+            //Verifica que el correo esté registrado
+            if(!super.existeCorreo(this.getCorreoInput())){
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Este correo todavía no está registrado"));
+            } else {
+                  //Verifica que la contraseña sea la misma 
+                  String s  = this.getSu().select("passUsuario", "passUsuario", this.getPassInput()).toString();
+                  System.out.print(s);
+                  if(!this.verificarPass(s, this.getPassInput())){
+                      context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "La contraseña es incorrecta"));
+                  } else {
+                  
+                  return "registeredLandingPage.xhtml?faces-redirect=true";
+                  }
+            }
+        }
+    
+       return null;
+        
     }
     
     public String botonRegistro(){// metodo para llevar a pagina de registro

@@ -14,8 +14,10 @@
     <h:body>
         <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
         <center>
-            <h:form>
-                <p:growl id="growl" showDetail="true" life="2000" />  
+               <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate />
+                </p:messages>
+            <h:form> 
                 <h:panelGrid columns="3">
 
                     <h:outputLabel value="Correo Electrónico"/>
@@ -30,7 +32,7 @@
                 </h:panelGrid>
 
                 <p:commandButton value="Log in" 
-
+                                 action="#{loginController.Logear()}"
                                  update="@form"/>
                 <p:commandButton value="Registrarse" action="registerForm.xhtml?faces-redirect=true"/>
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- button -->
