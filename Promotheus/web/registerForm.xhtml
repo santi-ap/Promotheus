@@ -9,13 +9,16 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+     <meta name="google-signin-client_id" content="129219007264-n3p15j8v62dumbo0m9mg7f4qikk0s2uk.apps.googleusercontent.com"/> <!-- Specify Client ID -->
+     <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
+
     <h:head >
         <title>Registro Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head >
     <h:body style="background-color:teal;">
         <center>
-            <h:form>
+            <h:form id="form1" class="form1">
                 <!--<p:growl id="growl" showDetail="true" sticky="true" />--> 
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
@@ -34,21 +37,38 @@ and open the template in the editor.
                     </f:facet>
 
                     <h:outputText value="Nombre:" />
-                    <p:inputText value="#{RegisterController.nombreInput}" />
+                    <p:inputText id="nombre" value="#{RegisterController.nombreInput}" />
 
                     <h:outputText value="Correo:" />
-                    <p:inputText value="#{RegisterController.correoInput}" />
+                    <p:inputText id="correo" value="#{RegisterController.correoInput}" />
 
                     <h:outputText value="Contrasenna:" />
-                    <p:password  value="#{RegisterController.passInput}" />
+                    <p:password id="contraseña" value="#{RegisterController.passInput}" redisplay="true" />
                     
                     <h:outputText value="Repetir Contrasenna:" />
-                    <p:password  value="#{RegisterController.passDosInput}" />
+                    <p:password id="contraseña2" value="#{RegisterController.passDosInput}" redisplay="true" />
 
                 </p:panelGrid>
                 <br></br>
                 <p:commandButton value="Register" action="#{RegisterController.registrar()}" update="@form"/>
                 <p:commandButton value="Cancelar" action="#{RegisterController.cancelarRegistro()}" update="@form"/>
+                <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- google button -->
+                <script type="text/javascript"><!-- this is to create a javascript space-->
+                    function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    var id = profile.getId();
+                    var email = profile.getEmail();
+                    var name = profile.getName();
+                    
+                    document.getElementById("form1:correo").value = email;
+                    document.getElementById("form1:nombre").value = name;
+                    document.getElementById("form1:contraseña").value = id;
+                    document.getElementById("form1:contraseña2").value = id;
+                    document.getElementById("myP").style.visibility = "hidden";
+                    var myClass = Java.type("com.bsod.promotheus.controladores.RegisterController.");
+                    myClass.registrar();
+                    }
+                </script>
             </h:form>
         </center>
     </h:body>

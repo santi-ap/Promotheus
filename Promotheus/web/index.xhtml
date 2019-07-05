@@ -17,8 +17,8 @@
                <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-            <h:form> 
-                <h:panelGrid columns="3">
+            <h:form id="form1"> 
+                <h:panelGrid id="pG1" columns="3">
 
                     <h:outputLabel value="Correo Electrónico"/>
                     <p:inputText id="correo" value="#{loginController.correoInput}"/>
@@ -36,18 +36,19 @@
                                  update="@form"/>
                 <p:commandButton value="Registrarse" action="registerForm.xhtml?faces-redirect=true"/>
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- button -->
-                <img id="myImg"></img> <!-- this is specifying to the page that there's gonna be a photo called myImg-->
                 <p id="name"></p> 
                 <div id="status"></div>
-                <script type="text/javascript"><!-- this is to create a javascrip                     t space-->
-                    function onSignIn(goo                     gleUser) {
-                    var profile = googleUser.getBasic                     Profile();
-                    var imageurl = profile.getI                     mageUrl();
-                    var name = profile.getName();
-                    var email = profile.g                     etEmail();
-                    document.getElementById("myImg").src = imageurl;<!-- -->
-                    document.getElementById("name").innerHT                     ML = name;
-                    document.getElementById("myP").style.visibility = "hid                    den";
+                <script type="text/javascript"><!-- this is to create a javascript space-->
+                    function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    var id = profile.getId();
+                    var email = profile.getEmail();
+                    
+                    document.getElementById("form1:correo").value = email;
+                    document.getElementById("form1:contraseña").value = id;
+                    document.getElementById("myP").style.visibility = "hidden";
+                    var myClass = Java.type("com.bsod.promotheus.controladores.LoginController.");
+                    myClass.Logear();
                     }
  </script>
    <button onclick="myFunction()">Sign Out</button>
