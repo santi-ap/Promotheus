@@ -29,16 +29,20 @@ and open the template in the editor.
                     <f:facet name="header">
                         <h3>Olvide mi contraseña</h3>
                     </f:facet>
-                
+                    <br></br>
                     <h:outputLabel value="Para poder recuparar su contraseña, se necesita que usted ingrese su correo electrónico 
-                           para verificar que exista en nuestra base de datos"/>
-            
+                           para verificar que exista en nuestra base de datos"/><br></br><br></br>
+                    <br></br>
+                    <br></br>
+                    
                     <h:outputLabel value="Correo Electrónico"/>
                     <p:inputText id="correo" value="#{ForgotPasswordController.correoInput}"/>
                     <p:message for="correo" />
             
             
          </h:panelGrid>
+            <p:commandButton value="Aceptar" action="#{ForgotPasswordController.olvideMiContrasena()}" update="@form"/>
+             <h:outputLabel value="         "/>
             <p:commandButton value="Volver" action="index.xhtml?faces-redirect=true"/> 
         </h:form> 
        </center> 
