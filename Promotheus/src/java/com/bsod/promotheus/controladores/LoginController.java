@@ -5,6 +5,7 @@
  */
 package com.bsod.promotheus.controladores;
 
+import com.bsod.promotheus.landingpage.MenuView;
 import com.bsod.promotheus.servicios.ServicioUsuario;
 import com.bsod.promotheus.usuario.Usuario;
 import javax.faces.application.FacesMessage;
@@ -45,7 +46,7 @@ public class LoginController extends Controller {
                   if(!this.verificarPass(s, this.getPassInput())){
                       context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "La contraseña es incorrecta"));
                   } else {
-                  
+                  this.retornaNombrePorCorreo();
                   return "registeredLandingPage.xhtml?faces-redirect=true";
                   }
             }
@@ -59,4 +60,9 @@ public class LoginController extends Controller {
         return "registerForm.xhtml?faces-redirect=true";
     }
     
+    //Metodo para retornar el nombre del usuario basado en el correo
+     public String retornaNombrePorCorreo(){
+       
+        return (su.select("nombreUsuario", "correoUsuario", this.getCorreoInput()).toString()); 
+    }
 }

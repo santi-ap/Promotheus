@@ -5,6 +5,7 @@
  */
 package com.bsod.promotheus.controladores;
 
+import com.bsod.promotheus.landingpage.MenuView;
 import com.bsod.promotheus.servicios.ServicioUsuario;
 import com.bsod.promotheus.usuario.Usuario;
 import javax.faces.application.FacesMessage;
@@ -85,10 +86,9 @@ public class RegisterController extends Controller {
     public String redirectLandingPage() {
         return "registeredLandingPage.xhtml?faces-redirect=true";
     }
-    
-    public String cancelarRegistro(){
+
+    public String cancelarRegistro() {
         return "index.xhtml?faces-redirect=true";
     }
-    
 
 }
