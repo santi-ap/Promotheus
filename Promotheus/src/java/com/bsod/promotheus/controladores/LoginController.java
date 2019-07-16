@@ -60,9 +60,9 @@ public class LoginController extends Controller {
         return "registerForm.xhtml?faces-redirect=true";
     }
     
-    //Metodo para retornar el nombre del usuario basado en el correo
+      //Metodo para retornar el nombre del usuario basado en el correo
      public String retornaNombrePorCorreo(){
        
-        return (su.select("nombreUsuario", "correoUsuario", this.getCorreoInput()).toString()); 
+        return (su.select("nombreUsuario", "correoUsuario", super.getCorreoInput()).toString()); 
     }
 }

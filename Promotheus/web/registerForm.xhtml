@@ -28,19 +28,16 @@ and open the template in the editor.
                         text-align: center;
                     }
                 </style>
-
-
-                <h3 style="margin-top:0">Registro</h3>
                 <p:panelGrid columns="2">
                     <f:facet name="header">
                         <h3>Registro</h3>
                     </f:facet>
 
                     <h:outputText value="Nombre:" />
-                    <p:inputText id="nombre" value="#{RegisterController.nombreInput}" />
+                    <p:inputText id="nombre" value="#{RegisterController.nombreInput}"  />
 
                     <h:outputText value="Correo:" />
-                    <p:inputText id="correo" value="#{RegisterController.correoInput}" />
+                    <p:inputText id="correo" value="#{RegisterController.correoInput}, #{loginController.correoInput}" />
 
                     <h:outputText value="Contrasenna:" />
                     <p:password id="contraseña" value="#{RegisterController.passInput}" redisplay="true" />
@@ -52,6 +49,7 @@ and open the template in the editor.
                 <br></br>
                 <p:commandButton value="Register" action="#{RegisterController.registrar()}" update="@form"/>
                 <p:commandButton value="Cancelar" action="#{RegisterController.cancelarRegistro()}" update="@form"/>
+                <br></br>   <br></br>
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- google button -->
                 <script type="text/javascript"><!-- this is to create a javascript space-->
                     function onSignIn(googleUser) {

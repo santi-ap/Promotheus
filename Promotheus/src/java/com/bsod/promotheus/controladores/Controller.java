@@ -6,14 +6,16 @@
 package com.bsod.promotheus.controladores;
 
 import com.bsod.promotheus.servicios.ServicioUsuario;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author DacordMachine
  */
+@ManagedBean(name="controller")
 public abstract class Controller {
     
-    private String correoInput="";
+    private String correoInput="gug";
     private String passInput;
     ServicioUsuario su = new ServicioUsuario();
 
@@ -65,5 +67,5 @@ public abstract class Controller {
         return (passInput.equals(passDosInput));
     }
     
-   
+ 
 }
