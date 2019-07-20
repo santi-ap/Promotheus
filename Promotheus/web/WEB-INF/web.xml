@@ -4,6 +4,28 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    
+    
+    <!-- /////////// Esto es para modificar los themes ///////// -->
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>delta</param-value>
+    </context-param>
+    <!-- /////////// Esto es para modificar los themes ///////// --> 
+    
+    
+    <!-- /////// Esto es para usar iconos ////////// -->
+    <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>application/x-font-woff2</mime-type>
+    </mime-mapping>
+    <!-- //////// Esto es para usar iconos ///////// -->   
+    
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

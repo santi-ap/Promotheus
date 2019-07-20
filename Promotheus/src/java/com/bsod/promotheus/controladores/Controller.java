@@ -6,16 +6,18 @@
 package com.bsod.promotheus.controladores;
 
 import com.bsod.promotheus.servicios.ServicioUsuario;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author DacordMachine
  */
+@ManagedBean(name="controller")
 public abstract class Controller {
     
-    private String correoInput;
+    private String correoInput="gug";
     private String passInput;
-    private ServicioUsuario su = new ServicioUsuario();
+    ServicioUsuario su = new ServicioUsuario();
 
     public ServicioUsuario getSu() {
         return su;
@@ -51,8 +53,6 @@ public abstract class Controller {
     
     
     public boolean existeCorreo(String correoInput) {// al presionar boton acceptar  se busca si el correo ya existe en al base de datos
-
-        ServicioUsuario su = new ServicioUsuario();
         String correoBD = su.select("correoUsuario", "correoUsuario", correoInput).toString();
 
         if (correoInput.equals(correoBD)) {
@@ -67,4 +67,5 @@ public abstract class Controller {
         return (passInput.equals(passDosInput));
     }
     
+ 
 }

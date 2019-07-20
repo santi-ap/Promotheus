@@ -5,12 +5,31 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Registered User Landing Page</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Promotheus Visitante</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+    </h:head>
     <body>
-        <div></div>
+        <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
+        <h:form >
+            <p:menubar style="margin:1px 1px 1px 200px;">
+                <p:menuitem value="Inicio" action="guestLandingPage.xhtml?faces-redirect=true" style="margin:1px 1px 1px 10px;" />
+                <p:menuitem value="Categorias" style="margin:1px 1px 1px 10px;"/>
+                <p:menuitem value="Contactenos" style="margin:1px 1px 1px 10px;"/>
+                <p:menuitem value="Mis Me Gusta" style="margin:1px 1px 1px 10px;"/>
+                <p:menuitem value="Sobre Nosotros" style="margin:1px 1px 1px 10px;"/>
+                <f:facet name="options">
+                    <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                    <p:commandButton  process="myFormField1 myFormField2 @this"  value="Ingresar" style="height: 35px; margin:1px 10px 1px 1px; 
+                                      background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
+                                      action="index.xhtml?faces-redirect=true" update="@form" ajax="false"/>
+                </f:facet>
+            </p:menubar>
+            <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
+        </h:form>
     </body>
 </html>
