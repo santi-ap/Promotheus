@@ -34,21 +34,21 @@ and open the template in the editor.
                     </f:facet>
 
                     <h:outputText value="Nombre:" />
-                    <p:inputText id="nombre" value="#{RegisterController.nombreInput}"  />
+                    <p:inputText id="nombre" value="#{controllerUsuario.nombreInput}"  />
 
                     <h:outputText value="Correo:" />
-                    <p:inputText id="correo" value="#{RegisterController.correoInput}, #{loginController.correoInput}" />
+                    <p:inputText id="correo" value="#{controllerUsuario.correoInput}" />
 
                     <h:outputText value="Contrasenna:" />
-                    <p:password id="contraseña" value="#{RegisterController.passInput}" redisplay="true" />
+                    <p:password id="contraseña" value="#{controllerUsuario.passInput}" redisplay="true" />
                     
                     <h:outputText value="Repetir Contrasenna:" />
-                    <p:password id="contraseña2" value="#{RegisterController.passDosInput}" redisplay="true" />
+                    <p:password id="contraseña2" value="#{controllerUsuario.passDosInput}" redisplay="true" />
 
                 </p:panelGrid>
                 <br></br>
-                <p:commandButton value="Register" action="#{RegisterController.registrar()}" update="@form"/>
-                <p:commandButton value="Cancelar" action="#{RegisterController.cancelarRegistro()}" update="@form"/>
+                <p:commandButton value="Register" action="#{controllerUsuario.registrar()}" update="@form"/>
+                <p:commandButton value="Cancelar" action="#{controllerUsuario.cancelarRegistro()}" update="@form"/>
                 <br></br>   <br></br>
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- google button -->
                 <script type="text/javascript"><!-- this is to create a javascript space-->
@@ -63,7 +63,7 @@ and open the template in the editor.
                     document.getElementById("form1:contraseña").value = id;
                     document.getElementById("form1:contraseña2").value = id;
                     document.getElementById("myP").style.visibility = "hidden";
-                    var myClass = Java.type("com.bsod.promotheus.controladores.RegisterController.");
+                    var myClass = Java.type("com.bsod.promotheus.controladores.controllerUsuario.");
                     myClass.registrar();
                     }
                 </script>

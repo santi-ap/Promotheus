@@ -21,20 +21,21 @@
                 <h:panelGrid id="pG1" columns="3">
 
                     <h:outputLabel value="Correo Electrónico"/>
-                    <p:inputText id="correo" value="#{loginController.correoInput}" />
+                    <p:inputText id="correo" value="#{controllerUsuario.correoInput}" />
                     <p:message for="correo" />
 
                     <h:outputLabel value="Contraseña"/>
-                    <p:password id="contraseña" value="#{loginController.passInput}"/>
+                    <p:password id="contraseña" value="#{controllerUsuario.passInput}"/>
                     <p:message for="contraseña" />
 
 
                 </h:panelGrid>
 
                 <p:commandButton value="Log in" 
-                                 action="#{loginController.Logear()}"
+                                 action="#{controllerUsuario.Logear()}"
+                                 style="height: 35px; margin:1px 10px 1px 1px;"
                                  update="@form"/>
-                <p:commandButton value="Registrarse" action="registerForm.xhtml?faces-redirect=true"/>
+                <p:commandButton value="Registrarse" action="registerForm.xhtml?faces-redirect=true" style="height: 35px; margin:1px 10px 1px 1px;"/>
                 <br></br><br></br>
 <!--                <p:commandButton value="Olvidé mi contraseña" action="forgotPassForm.xhtml?faces-redirect=true"/>-->
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- button -->
@@ -49,7 +50,7 @@
                     document.getElementById("form1:correo").value = email;
                     document.getElementById("form1:contraseña").value = id;
                     document.getElementById("myP").style.visibility = "hidden";
-                    var myClass = Java.type("com.bsod.promotheus.controladores.LoginController.");
+                    var myClass = Java.type("com.bsod.promotheus.controladores.controllerUsuario.");
                     myClass.Logear();
                     }
  </script>

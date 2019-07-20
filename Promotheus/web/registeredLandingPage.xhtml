@@ -24,7 +24,7 @@ and open the template in the editor.
                 <p:menuitem value="Sobre Nosotros" style="margin:1px 1px 1px 10px;"/>
                 <f:facet name="options">
                     <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Buscar"/>
-                    <p:commandButton type="button" value="#{loginController.retornaNombrePorCorreo()}" style="height: 35px; margin:1px 10px 1px 1px;" />
+                    <p:commandButton type="button" value="#{controllerUsuario.retornaNombrePorCorreo()}" style="height: 35px; margin:1px 10px 1px 1px;" />
                      <p:commandButton  process="myFormField1 myFormField2 @this"  value="Cerrar Sesion" style="height: 35px; margin:1px 10px 1px 1px; 
                                       background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
                                       action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
