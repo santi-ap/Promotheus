@@ -10,11 +10,12 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+
         <title>Promothues</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
-        <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
+         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
         <h:form >
             <p:menubar style="margin:1px 1px 1px 200px;">
                 <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:1px 1px 1px 10px;" />
@@ -32,5 +33,42 @@ and open the template in the editor.
             </p:menubar>
             <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
         </h:form>
+         
+        <!-- <AGREGAR PROMO POP-UP FORM ////////////////////////////////////////////////////////////////////////////////////////// -->
+        
+        <h:form>        
+    <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Agregar Promo">
+        <p:graphicImage name="img/buttonAdd.png" />
+    </h:outputLink>
+     
+    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+     
+    <p:dialog header="Agregar Promo" widgetVar="dlg" resizable="true">
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="Titulo" value="Titulo:" />
+            <p:inputText id="titulo" value="#{ClassName.attribute}" required="true" label="titulo" />
+             
+            <h:outputLabel for="Descripcion" value="Descripcion: " />
+            <p:inputText id="descripcion" value="#{ClassName.attribute}" required="true" label="descripcion" />
+             
+            <h:outputLabel for="Link" value="Link:" />
+            <p:inputText id="link" value="#{ClassName.attribute}" required="false" label="link" />
+            
+            <h:outputLabel for="date" value="Data: " />
+            <p:calendar id="dataInicio" value="#{ClassName.attribute}" />
+            
+            <h:outputLabel for="date" value="Data: " />
+            <p:calendar id="dataFin" value="#{ClassName.attribute}" />
+            
+            <f:facet name="footer">
+                <p:commandButton value="Agregar" update="growl" action="#{ClassName.method}"
+                                 oncomplete="handleLoginRequest(xhr, status, args)" />
+            </f:facet>  
+        </h:panelGrid>
+    </p:dialog>    
+</h:form>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
+
+       
     </body>
 </html>

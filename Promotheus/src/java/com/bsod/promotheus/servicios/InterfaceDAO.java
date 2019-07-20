@@ -27,7 +27,7 @@ public interface InterfaceDAO {
      * Toma un objeto tipo usuario para tener todos los datos completos para hacer el insert
      * @param usuario 
      */
-    public void insert(Usuario usuario);//Se toma una un usario como parametro
+    public void insert(Object objeto);//Se toma una un usario como parametro
     
     /**
      * UPDATE Usuario SET queColumnaActualizamos = queInsertamos WHERE queColuma = queValor
