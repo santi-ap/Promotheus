@@ -6,14 +6,27 @@
 package com.bsod.promotheus.controladores;
 
 import com.bsod.promotheus.servicios.ServicioCategoria;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import static org.primefaces.component.focus.Focus.PropertyKeys.context;
 
 /**
  *
  * @author Asus
  */
+@ManagedBean(name = "controllerCategoria")
 public class ControllerCategoria {
-    private ServicioCategoria servicioCategoria;
+    private ServicioCategoria servicioCategoria = new ServicioCategoria();
+    FacesContext context = FacesContext.getCurrentInstance();
 
+    private String categoria;  
+    private List<String> categorias = new ArrayList<>();
+    
     public ControllerCategoria ()
     {}
     
@@ -31,5 +44,27 @@ public class ControllerCategoria {
         this.servicioCategoria = servicioCategoria;
     }
     
+   public String getCategoria() {
+        return categoria;
+    }
+ 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+ 
+    public List<String> getCategorias() {
+        this.setCategorias();
+        return categorias;
+    }
+ 
+    public void setCategorias() {
+        this.categorias = servicioCategoria.selectNombreCategoria();
+        
+    }
     
+    public void printCat(){  // METHOD TO TEST WHAT THE SELECTED CATEGORY IS
+        System.out.println("testing");
+        System.out.println(this.categoria);
+        
+    }
 }
