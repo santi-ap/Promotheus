@@ -58,18 +58,11 @@ public class ControllerPromo {
     
     public String guardarPromo (String correoUsuario)
     {
-        System.out.println("b1");
         System.out.println(correoUsuario);
         this.getNuevaPromo().setCorreoUsuario(correoUsuario);
-        System.out.println( this.getNuevaPromo().getCorreoUsuario());
-        
+        System.out.println( this.getNuevaPromo().getCorreoUsuario());      
         this.getServicioPromo().insert(this.getNuevaPromo());
-        System.out.println(this.nuevaPromo.getFechaPublicacionSQL());
-        
-        System.out.println(this.nuevaPromo.getFechaInicioSQL());
-        System.out.println(this.nuevaPromo.getFechaFinSQL());
-////        addMessage("Insertando promo...");
-////        System.out.println("b1");
+        addMessage("Insertando promo...");
         return "registeredLandingPage.xhtml?faces-redirect=true";
     }
     

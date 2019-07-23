@@ -23,9 +23,9 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO{
      * @param queBuscamos 
      * @param queColumna
      * @param queValor
-     * @return 
+     * @return lo que estamos buscando como String
      */
-    @Override//select, toma como parametros lo que estmos buscando, la columna donde especificamos el valor de condicion y que valor debe tener la columna 
+    @Override//select, toma como parametros lo que estamos buscando, la columna donde especificamos el valor de condicion y que valor debe tener la columna 
     public Object select(Object queBuscamos, Object queColumna, Object queValor) {
         String returnSelect="";
         ResultSet rs = null;
@@ -66,7 +66,11 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO{
         //retorna lo que se selecciono
         return returnSelect;
     }
-
+    
+    /**
+     * INSERT INTO usuario (nombreUsuario, correoUsuario, passUsuario) values (((Usuario)objeto).getNombreUsuario(),((Usuario)objeto).getCorreoUsuario(),((Usuario)objeto).getPassUsuario()));
+     * @param objeto 
+     */
     @Override
     public void insert(Object objeto) {
         try{
@@ -92,13 +96,20 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO{
             }
         }
     }
-
+    
+    /**
+     * UPDATE usuario SET queColumnaActualizamos = queInsertamos.toString() WHERE queColuma = queValor.toString();
+     * @param queColumnaActualizamos
+     * @param queInsertamos
+     * @param queColuma
+     * @param queValor 
+     */
     @Override
     public void update(Object queColumnaActualizamos, Object queInsertamos, Object queColuma, Object queValor) {
         try{
             super.conectar();
             System.out.println("Actualizando valores...");
-            String sql = "UPDATE usuario SET "+queColumnaActualizamos+" = ? WHERE "+queColuma+" = ?";
+            String sql = "UPDATE usuario SET "+queColumnaActualizamos+" = ? WHERE "+queColuma+" = ?;";
             PreparedStatement preparedStmt = conn.prepareStatement(sql);
             preparedStmt.setString(1, queInsertamos.toString());
             preparedStmt.setString(2, queValor.toString());
@@ -114,13 +125,18 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO{
             }
         }
     }
-
+    
+    /**
+     * DELETE FROM usuario WHERE queColumna = queValor.toString();
+     * @param queColumna
+     * @param queValor 
+     */
     @Override
     public void delete(Object queColumna, Object queValor) {
         try{
             super.conectar();
             System.out.println("Borrando valores...");
-            String sql = "DELETE FROM usuario WHERE "+queColumna+" = ?";
+            String sql = "DELETE FROM usuario WHERE "+queColumna+" = ?;";
             PreparedStatement preparedStmt = conn.prepareStatement(sql);
             preparedStmt.setString(1, queValor.toString());
             preparedStmt.execute(); 
@@ -136,7 +152,13 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO{
         }
 
     }
-
+    
+    /**
+     * SELECT * FROM usuario WHERE queColumna = queValor.toString();
+     * @param queColumna
+     * @param queValor
+     * @return 
+     */
     @Override
     public ArrayList<Object> selectAll(Object queColumna, Object queValor) {
         ArrayList<Object> listaDatosUsuario= new ArrayList<>();

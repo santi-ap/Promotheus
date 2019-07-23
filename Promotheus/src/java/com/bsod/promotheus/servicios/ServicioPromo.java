@@ -67,7 +67,6 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
     @Override
     public void insert(Object objeto) {
             try{
-                System.out.println("Servicio 70");
             //STEP 3: Execute a query
             super.conectar();
                 
@@ -75,12 +74,10 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
             System.out.println("Insertando valores...");
             String sql;
             sql="INSERT INTO Promo (tituloPromo, descripcionPromo, linkPromo, fechaPublicacion, fechaInicio, fechaFin, Usuario_CorreoUsuario) values (?,?,?, ?, ?, ?, ?);";
-            System.out.println("Servicio 78");
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, ((Promo)objeto).getTituloPromo());
             preparedStatement.setString(2, ((Promo)objeto).getDescripcionPromo());
             preparedStatement.setString(3, ((Promo)objeto).getLinkPromo());
-            System.out.println("Servicio 83");
             //passing current date            
             preparedStatement.setDate(4, ((Promo)objeto).getFechaPublicacionSQL());
             
@@ -88,7 +85,6 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
             preparedStatement.setDate(5, ((Promo)objeto).getFechaInicioSQL());
             //passing fechaFin
             preparedStatement.setDate(6, ((Promo)objeto).getFechaFinSQL());
-            System.out.println("Servicio 90");
             preparedStatement.setString(7, ((Promo)objeto).getCorreoUsuario());
             //EXECUTE!
             preparedStatement.executeUpdate(); 
