@@ -5,34 +5,41 @@
  */
 package com.bsod.promotheus.controladores;
 
-import com.bsod.promotheus.servicios.ServicioCategoria;
+import com.bsod.promotheus.servicios.ServicioPromo;
 import com.bsod.promotheus.usuario.Promo;
+import static com.sun.javafx.logging.PulseLogger.addMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Asus
  */
+@ManagedBean(name="controllerPromo")
+@SessionScoped
 public class ControllerPromo {
-    private ServicioCategoria servicioCategoria;
-    private Promo nuevaPromo;
+    private ServicioPromo servicioPromo = new ServicioPromo();
+    private Promo nuevaPromo = new Promo();
+    
+    
 
     public ControllerPromo () 
     {
-        this.servicioCategoria = new ServicioCategoria ();
+        this.servicioPromo = new ServicioPromo ();
         this.nuevaPromo = new Promo ();
     }
     /**
-     * @return the sc
+     * @return the servicioPromo
      */
-    public ServicioCategoria getServicioCategoria() {
-        return servicioCategoria;
+    public ServicioPromo getServicioPromo() {
+        return servicioPromo;
     }
 
     /**
-     * @param sc the sc to set
+     * @param servicioPromo the sc to set
      */
-    public void setServicioCategoria(ServicioCategoria servicioCategoria) {
-        this.servicioCategoria = servicioCategoria;
+    public void setServicioPromo(ServicioPromo servicioPromo) {
+        this.servicioPromo = servicioPromo;
     }
 
     /**
@@ -49,9 +56,21 @@ public class ControllerPromo {
         this.nuevaPromo = nuevaPromo;
     }
     
-    public void guardarPromo (Promo nuevoPromo)
+    public String guardarPromo (String correoUsuario)
     {
+        System.out.println("b1");
+        System.out.println(correoUsuario);
+        this.getNuevaPromo().setCorreoUsuario(correoUsuario);
+        System.out.println( this.getNuevaPromo().getCorreoUsuario());
         
+        this.getServicioPromo().insert(this.getNuevaPromo());
+        System.out.println(this.nuevaPromo.getFechaPublicacionSQL());
+        
+        System.out.println(this.nuevaPromo.getFechaInicioSQL());
+        System.out.println(this.nuevaPromo.getFechaFinSQL());
+////        addMessage("Insertando promo...");
+////        System.out.println("b1");
+        return "registeredLandingPage.xhtml?faces-redirect=true";
     }
     
     public void mostrarPromo ()

@@ -27,14 +27,14 @@ and open the template in the editor.
                     <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Buscar"/>
                     <p:commandButton type="button" value="#{controllerUsuario.retornaNombrePorCorreo()}" style="height: 35px; margin:1px 10px 1px 1px;" />
                      <p:commandButton  process="myFormField1 myFormField2 @this"  value="Cerrar Sesion" style="height: 35px; margin:1px 10px 1px 1px; 
-                                      background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
-                                      action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
+                                       background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
+                                       action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
                 </f:facet>
             </p:menubar>
             <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
         </h:form>
          
-        <!-- <AGREGAR PROMO POP-UP FORM ////////////////////////////////////////////////////////////////////////////////////////// -->
+        <!-- <"AGREGAR PROMO" POP-UP FORM ////////////////////////////////////////////////////////////////////////////////////////// -->
         
         <h:form>        
     <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Agregar Promo">
@@ -46,23 +46,22 @@ and open the template in the editor.
     <p:dialog header="Agregar Promo" widgetVar="dlg" resizable="true">
         <h:panelGrid columns="2" cellpadding="5">
             <h:outputLabel for="Titulo" value="Titulo:" />
-            <p:inputText id="titulo" value="#{ClassName.attribute}" required="true" label="titulo" />
+            <p:inputText id="titulo" value="#{controllerPromo.nuevaPromo.tituloPromo}" required="true" label="titulo" />
              
             <h:outputLabel for="Descripcion" value="Descripcion: " />
-            <p:inputText id="descripcion" value="#{ClassName.attribute}" required="true" label="descripcion" />
+            <p:inputText id="descripcion" value="#{controllerPromo.nuevaPromo.descripcionPromo}" required="true" label="descripcion" />
              
             <h:outputLabel for="Link" value="Link:" />
-            <p:inputText id="link" value="#{ClassName.attribute}" required="false" label="link" />
+            <p:inputText id="link" value="#{controllerPromo.nuevaPromo.linkPromo}" required="false" label="link" /> 
             
-            <h:outputLabel for="date" value="Data: " />
-            <p:calendar id="dataInicio" value="#{ClassName.attribute}" />
+            <h:outputLabel for="date1" value="Fecha de Inicio de la Promo: " />
+            <p:calendar id="dataInicio" value="#{controllerPromo.nuevaPromo.fechaInicio}" />
             
-            <h:outputLabel for="date" value="Data: " />
-            <p:calendar id="dataFin" value="#{ClassName.attribute}" />
+            <h:outputLabel for="date2" value="Fecha en que Termina la Promo: " />
+            <p:calendar id="dataFin" value="#{controllerPromo.nuevaPromo.fechaFin}" />
             
             <f:facet name="footer">
-                <p:commandButton value="Agregar" update="growl" action="#{ClassName.method}"
-                                 oncomplete="handleLoginRequest(xhr, status, args)" />
+                <p:commandButton value="Agregar" update="growl" action="#{controllerPromo.guardarPromo(controllerUsuario.correoInput)}" />
             </f:facet>  
         </h:panelGrid>
     </p:dialog>    
