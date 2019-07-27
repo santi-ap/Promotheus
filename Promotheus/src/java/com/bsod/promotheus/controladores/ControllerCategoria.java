@@ -21,15 +21,16 @@ import static org.primefaces.component.focus.Focus.PropertyKeys.context;
  */
 @ManagedBean(name = "controllerCategoria")
 public class ControllerCategoria {
+
     private ServicioCategoria servicioCategoria = new ServicioCategoria();
     FacesContext context = FacesContext.getCurrentInstance();
 
-    private String categoria;  
+    private String categoria;
     private List<String> categorias = new ArrayList<>();
-    
-    public ControllerCategoria ()
-    {}
-    
+
+    public ControllerCategoria() {
+    }
+
     /**
      * @return the servicioCategoria
      */
@@ -43,28 +44,28 @@ public class ControllerCategoria {
     public void setServicioCategoria(ServicioCategoria servicioCategoria) {
         this.servicioCategoria = servicioCategoria;
     }
-    
-   public String getCategoria() {
+
+    public String getCategoria() {
         return categoria;
     }
- 
+
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
- 
+
     public List<String> getCategorias() {
         this.setCategorias();
         return categorias;
     }
- 
+
     public void setCategorias() {
         this.categorias = servicioCategoria.selectNombreCategoria();
-        
+
     }
-    
-    public void printCat(){  // METHOD TO TEST WHAT THE SELECTED CATEGORY IS
+
+    public void printCat() {  // METHOD TO TEST WHAT THE SELECTED CATEGORY IS
         System.out.println("testing");
-        System.out.println(this.categoria);
-        
+        System.out.println(this.getCategoria());
+
     }
 }

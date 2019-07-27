@@ -21,6 +21,9 @@ public class TesterDavid {
     public static void main(String[] args) {
     ServicioCategoria sc = new ServicioCategoria();
     ControllerCategoria cc= new ControllerCategoria();
+    
+    //sc.selectNombreCategoria();
+        System.out.println(sc.select("nombreCategoria", "nombreCategoria", "Electronicos"));
     }
    
 }

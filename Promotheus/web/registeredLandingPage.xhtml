@@ -34,8 +34,6 @@ and open the template in the editor.
             <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
         </h:form>
 
-        <!-- <AGREGAR PROMO POP-UP FORM ////////////////////////////////////////////////////////////////////////////////////////// -->
-
         <h:form>        
             <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Agregar Promo">
                 <p:graphicImage name="img/buttonAdd.png" />
@@ -56,11 +54,13 @@ and open the template in the editor.
 
                     <h:outputLabel for="Categoria" value="Categoria:" />
 
-                    <p:selectOneMenu id="CategoriaComboBox"  value="#{controllerCategoria.categoria}" style="min-width:150px; width:188px;" converter="categoriaConverter"> // IN VALUE WILL MAKE THE ATRIBUTE EQUAL THE SELECTED CAT
-                        <f:selectItem itemLabel="" itemValue="" />
-                        <f:selectItems value="#{controllerCategoria.categorias}" var="tipoUsuario" itemLabel="#{categorias}" itemValue="#{categoria}" /> //IN VALUE CALLS LIST OF CATEGORYS TO PRINT IN THE COMBO BOX
+                    <p:selectOneMenu id="CategoriaComboBox"  value="#{controllerCategoria.categoria}"
+                                     dynamic="true"  style="min-width:150px; width:188px;"
+                                     converter="categoriaConverter"> // IN VALUE WILL MAKE THE ATRIBUTE EQUAL THE SELECTED CAT
+                        <f:selectItem itemLabel="Escoja una categoria" itemValue="" />
+                        <f:selectItems value="#{controllerCategoria.categorias}" var="categoria" itemLabel="#{categoria}" itemValue="categoria"  /> //IN VALUE CALLS LIST OF CATEGORIES TO PRINT IN THE COMBO BOX
                     </p:selectOneMenu>
-                    
+
                     <h:outputLabel for="date" value="Data: " />
                     <p:calendar id="dataInicio" value="#{ClassName.attribute}" />
 
@@ -71,14 +71,8 @@ and open the template in the editor.
                         <p:commandButton value="Agregar" update="growl" action="#{ClassName.method}"
                                          oncomplete="handleLoginRequest(xhr, status, args)" />
                     </f:facet>  
-
-
-          
-                  
-               
                 </h:panelGrid>
             </p:dialog>    
         </h:form>
-        <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->    
     </body>
 </html>
