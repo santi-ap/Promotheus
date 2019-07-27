@@ -19,7 +19,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
-
 /**
  *
  * @author Asus
@@ -32,34 +31,34 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
 
     @Override
     public Object select(Object queBuscamos, Object queColumna, Object queValor) {
-        String returnSelect="";
+        String returnSelect = "";
         ResultSet rs = null;
-        Statement stmt=null;
-        try{
+        Statement stmt = null;
+        try {
             //STEP 3: Execute a query
             super.conectar();
             System.out.println("Creando statement...");
-            stmt=conn.createStatement();
+            stmt = conn.createStatement();
             String sql;
-            
+
             //hacemos el select con lo que buscamos, de cual columna y cual valor de la columna
-            sql="SELECT "+queBuscamos+" FROM promo WHERE "+queColumna+" = ?;";
-            
+            sql = "SELECT " + queBuscamos + " FROM promo WHERE " + queColumna + " = ?;";
+
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, queValor.toString());
-            rs=preparedStatement.executeQuery(); 
-            
+            rs = preparedStatement.executeQuery();
+
             //STEP 3.1: Extract data from result set
-            if(rs.next()){
+            if (rs.next()) {
                 //Retrieve by column name
                 returnSelect = rs.getString(queBuscamos.toString());
-            }else{//si no encuentra a un usuario con los parametros especificados, va a retornar un un String avisando que no se encontro el usuario
-            return "noPromoFound";
+            } else {//si no encuentra a un usuario con los parametros especificados, va a retornar un un String avisando que no se encontro el usuario
+                return "noPromoFound";
             }
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 rs.close();
                 stmt.close();
@@ -69,36 +68,39 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
             }
         }
         //retorna lo que se selecciono
-        return returnSelect;    }
+        return returnSelect;
+    }
 
     @Override
     public void insert(Object objeto) {
-            try{
+        try {
             //STEP 3: Execute a query
             super.conectar();
-                
 
             System.out.println("Insertando valores...");
             String sql;
-            sql="INSERT INTO Promo (tituloPromo, descripcionPromo, linkPromo, fechaPublicacion, fechaInicio, fechaFin, Usuario_CorreoUsuario) values (?,?,?, ?, ?, ?, ?);";
+            sql = "INSERT INTO Promo (tituloPromo, descripcionPromo, linkPromo, fechaPublicacion, fechaInicio, fechaFin, Usuario_CorreoUsuario, Categoria_nombreCategoriaPromo) values (?,?,?,?, ?, ?, ?, ?);";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, ((Promo)objeto).getTituloPromo());
-            preparedStatement.setString(2, ((Promo)objeto).getDescripcionPromo());
-            preparedStatement.setString(3, ((Promo)objeto).getLinkPromo());
+            preparedStatement.setString(1, ((Promo) objeto).getTituloPromo());
+            preparedStatement.setString(2, ((Promo) objeto).getDescripcionPromo());
+            preparedStatement.setString(3, ((Promo) objeto).getLinkPromo());
             //passing current date            
-            preparedStatement.setDate(4, ((Promo)objeto).getFechaPublicacionSQL());
-            
+            preparedStatement.setDate(4, ((Promo) objeto).getFechaPublicacionSQL());
+
             //passing fechaInicio
-            preparedStatement.setDate(5, ((Promo)objeto).getFechaInicioSQL());
+            preparedStatement.setDate(5, ((Promo) objeto).getFechaInicioSQL());
             //passing fechaFin
-            preparedStatement.setDate(6, ((Promo)objeto).getFechaFinSQL());
-            preparedStatement.setString(7, ((Promo)objeto).getCorreoUsuario());
+            preparedStatement.setDate(6, ((Promo) objeto).getFechaFinSQL());
+            preparedStatement.setString(7, ((Promo) objeto).getCorreoUsuario());
+            preparedStatement.setString(8, ((Promo) objeto).getCategoria());
+            System.out.println(((Promo) objeto).getCategoria());
+            System.out.println("test");
             //EXECUTE!
-            preparedStatement.executeUpdate(); 
-            
-        }catch(SQLException e){
-                System.out.println(e);
-        }finally{
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
             try {
                 super.desconectar();
             } catch (SQLException ex) {
@@ -109,45 +111,45 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
 
     @Override
     public void update(Object queColumnaActualizamos, Object queInsertamos, Object queColuma, Object queValor) {
-        try{
+        try {
             super.conectar();
             System.out.println("Actualizando valores...");
-            String sql = "UPDATE promo SET "+queColumnaActualizamos+" = ? WHERE "+queColuma+" = ?";
+            String sql = "UPDATE promo SET " + queColumnaActualizamos + " = ? WHERE " + queColuma + " = ?";
             PreparedStatement preparedStmt = conn.prepareStatement(sql);
             preparedStmt.setString(1, queInsertamos.toString());
             preparedStmt.setString(2, queValor.toString());
-            preparedStmt.executeUpdate(); 
-           
-        }catch(Exception e){
+            preparedStmt.executeUpdate();
+
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 super.desconectar();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }    
+        }
     }
 
     @Override
     public void delete(Object queColumna, Object queValor) {
-        try{
+        try {
             super.conectar();
             System.out.println("Borrando valores...");
-            String sql = "DELETE FROM usuario WHERE "+queColumna+" = ?";
+            String sql = "DELETE FROM usuario WHERE " + queColumna + " = ?";
             PreparedStatement preparedStmt = conn.prepareStatement(sql);
             preparedStmt.setString(1, queValor.toString());
-            preparedStmt.execute(); 
-           
-        }catch(Exception e){
+            preparedStmt.execute();
+
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 super.desconectar();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        }    
+        }
     }
 
     @Override
@@ -246,5 +248,4 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
         //retorna lo que se selecciono
         return listaPromo;
     }
-    
-    }
+}

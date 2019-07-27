@@ -31,7 +31,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.primefaces-7.0.rc3.jar}</file>
+                    <file>${file.reference.primefaces-7.0.rc3.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
