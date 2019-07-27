@@ -5,8 +5,6 @@
  */
 package com.bsod.promotheus.usuario;
 
-import java.sql.Date;
-
 
 /**
  *
@@ -114,7 +112,7 @@ public class Promo {
         if (this.fechaPublicacion == null)
             this.setFechaPublicacion(new java.util.Date());
         
-            return fechaPublicacion;
+        return fechaPublicacion;
     }
 
     /**
