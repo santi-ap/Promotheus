@@ -8,6 +8,7 @@ package com.bsod.promotheus.usuario;
 import java.sql.Date;
 import java.util.Objects;
 
+
 /**
  *
  * @author Asus
@@ -16,14 +17,28 @@ public class Promo {
     private String linkPromo;
     private String tituloPromo;
     private String descripcionPromo;
-    private Date fechaInicio;
-    private Date fechaFin;
-    private Date fechaPublicacion;
+    private java.util.Date fechaInicio;
+    private java.util.Date fechaFin;
+    private java.util.Date fechaPublicacion;
     private int id;
+    private String correoUsuario;
+    private String categoria;
+
+    
     
     public Promo ()
     {
         
+    }
+
+    public Promo(String linkPromo, String tituloPromo, String descripcionPromo, java.util.Date fechaInicio, java.util.Date fechaFin, java.util.Date fechaPublicacion, String correoUsuario) {
+        this.linkPromo = linkPromo;
+        this.tituloPromo = tituloPromo;
+        this.descripcionPromo = descripcionPromo;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.fechaPublicacion = fechaPublicacion;
+        this.correoUsuario = correoUsuario;
     }
 
     /**
@@ -71,42 +86,45 @@ public class Promo {
     /**
      * @return the fechaInicio
      */
-    public Date getFechaInicio() {
+    public java.util.Date getFechaInicio() {
         return fechaInicio;
     }
 
     /**
      * @param fechaInicio the fechaInicio to set
      */
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(java.util.Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
     /**
      * @return the fechaFin
      */
-    public Date getFechaFin() {
+    public java.util.Date getFechaFin() {
         return fechaFin;
     }
 
     /**
      * @param fechaFin the fechaFin to set
      */
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(java.util.Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 
     /**
      * @return the fechaPublicacion
      */
-    public Date getFechaPublicacion() {
-        return fechaPublicacion;
+    public java.util.Date getFechaPublicacion() {
+        if (this.fechaPublicacion == null)
+            this.setFechaPublicacion(new java.util.Date());
+        
+            return fechaPublicacion;
     }
 
     /**
      * @param fechaPublicacion the fechaPublicacion to set
      */
-    public void setFechaPublicacion(Date fechaPublicacion) {
+    public void setFechaPublicacion(java.util.Date fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
 
@@ -123,6 +141,15 @@ public class Promo {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
 
     @Override
     public int hashCode() {
@@ -171,6 +198,55 @@ public class Promo {
             return false;
         }
         return true;
+    }
+    /**
+     * @return the correoUsuario
+     */
+    public String getCorreoUsuario() {
+        return correoUsuario;
+    }
+
+    /**
+     * @param correoUsuario the correoUsuario to set
+     */
+    public void setCorreoUsuario(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
+    }
+    
+    /**
+     * 
+     * @param calendarDate the util.Date to convert
+     * @return the same date as a sql.Date class
+     */
+    public java.sql.Date sqlDate(java.util.Date calendarDate) 
+    {
+        return new java.sql.Date(calendarDate.getTime());
+    }
+    
+    /**
+     * 
+     * @return the fechaPublicacion as sql.Date
+     */
+    public java.sql.Date getFechaPublicacionSQL ()
+    {
+        return this.sqlDate(this.getFechaPublicacion());
+    }   
+    /**
+     * 
+     * @return the fechaInicio as sql.Date
+     */
+    public java.sql.Date getFechaInicioSQL ()
+    {
+        return this.sqlDate(this.getFechaInicio());
+    }   
+    /**
+     * 
+     * @return the fechaFin as sql.Date
+     */
+    public java.sql.Date getFechaFinSQL ()
+    {
+        return this.sqlDate(this.getFechaFin());
+
     }
     
     

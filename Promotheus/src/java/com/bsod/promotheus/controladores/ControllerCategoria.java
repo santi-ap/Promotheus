@@ -11,15 +11,16 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import static org.primefaces.component.focus.Focus.PropertyKeys.context;
 
 /**
  *
  * @author Asus
  */
 @ManagedBean(name = "controllerCategoria")
+@SessionScoped
 public class ControllerCategoria {
 
     private ServicioCategoria servicioCategoria = new ServicioCategoria();
@@ -63,9 +64,9 @@ public class ControllerCategoria {
 
     }
 
-    public void printCat() {  // METHOD TO TEST WHAT THE SELECTED CATEGORY IS
-        System.out.println("testing");
-        System.out.println(this.getCategoria());
-
+    public void probarCategoria() {
+        System.out.println("Pirnting cat");
+        System.out.println(this.categoria);
     }
+
 }

@@ -103,7 +103,7 @@ public class ServicioCategoria extends Servicio implements InterfaceDAO {
             while (rs.next()) {
                 //Retrieve by column name
                 String nombreCategoria = rs.getString("nombreCategoria");
-                System.out.println(nombreCategoria);
+                //System.out.println(nombreCategoria);
                 //Display values
                 //   System.out.println("ID: "+id+", Nombre: " +nombre);
                 listaCategoria.add(nombreCategoria);

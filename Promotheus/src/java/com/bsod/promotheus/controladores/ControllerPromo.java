@@ -5,34 +5,44 @@
  */
 package com.bsod.promotheus.controladores;
 
-import com.bsod.promotheus.servicios.ServicioCategoria;
+import com.bsod.promotheus.servicios.ServicioPromo;
 import com.bsod.promotheus.usuario.Promo;
+import static com.sun.javafx.logging.PulseLogger.addMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
  * @author Asus
  */
+@ManagedBean(name="controllerPromo")
+@SessionScoped
 public class ControllerPromo {
-    private ServicioCategoria servicioCategoria;
-    private Promo nuevaPromo;
+    private ServicioPromo servicioPromo = new ServicioPromo();
+    private Promo nuevaPromo = new Promo();
+    private String categoria;
+    
+    
 
     public ControllerPromo () 
     {
-        this.servicioCategoria = new ServicioCategoria ();
+        this.servicioPromo = new ServicioPromo ();
         this.nuevaPromo = new Promo ();
     }
     /**
-     * @return the sc
+     * @return the servicioPromo
      */
-    public ServicioCategoria getServicioCategoria() {
-        return servicioCategoria;
+    public ServicioPromo getServicioPromo() {
+        return servicioPromo;
     }
 
     /**
-     * @param sc the sc to set
+     * @param servicioPromo the sc to set
      */
-    public void setServicioCategoria(ServicioCategoria servicioCategoria) {
-        this.servicioCategoria = servicioCategoria;
+    public void setServicioPromo(ServicioPromo servicioPromo) {
+        this.servicioPromo = servicioPromo;
     }
 
     /**
@@ -48,15 +58,45 @@ public class ControllerPromo {
     public void setNuevaPromo(Promo nuevaPromo) {
         this.nuevaPromo = nuevaPromo;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
     
-    public void guardarPromo (Promo nuevoPromo)
+    public void guardarPromo (String correoUsuario)
     {
         
+        this.getNuevaPromo().setCategoria(categoria);
+        this.getNuevaPromo().setCorreoUsuario(correoUsuario);      
+        this.getServicioPromo().insert(this.getNuevaPromo());
+        this.setNuevaPromo(new Promo());
+        this.redirect("registeredLandingPage");
+        //return "registeredLandingPage.xhtml?faces-redirect=true";
     }
     
     public void mostrarPromo ()
     {
         
+    }
+    
+    public void redirect(String page)
+    {
+          try {
+            HttpServletRequest request = (HttpServletRequest) FacesContext
+                    .getCurrentInstance().getExternalContext().getRequest();
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect(
+                            request.getContextPath()
+                            + "/faces/" + page + ".xhtml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
    
