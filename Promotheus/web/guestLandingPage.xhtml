@@ -36,9 +36,9 @@ and open the template in the editor.
         </h:form>
         
         <h:form>        
-            <h:outputLink value="javascript:void(0)" onclick="index.xhtml?faces-redirect=true" title="Agregar Promo">
-            <p:graphicImage name="img/buttonAdd.png" />
-            </h:outputLink>
+            <p:commandLink action="#{controllerUsuario.redirectToLogin()}">
+    <h:graphicImage name="img/buttonAdd.png" />
+</p:commandLink>
         </h:form>
     </body>
 </html>
