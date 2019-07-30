@@ -11,10 +11,10 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
 
-        <title>Promothues</title>
+        <title>Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <body>
+    <body style="background-color: darkgray">
         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
         <h:form >
             <p:menubar style="margin:1px 1px 1px 1px;">
@@ -83,6 +83,91 @@ and open the template in the editor.
                 </h:panelGrid>
             </p:dialog>    
         </h:form>
+        <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
+
+
+        <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
+        <style type="text/css"> 
+            /*demo*/
+            .ui-dataview-list .ui-dataview-row {
+                border-bottom: 1px solid #A8A8A8;
+                padding: 25px 10px;
+                /* with the exported variables from Nova and Luna Themes*/
+                border-bottom-color: var(--input-border-color, #A8A8A8);
+            }
+
+            .logo {
+                width: 5%;
+            }
+            .detail {
+                width: 85%;
+                padding-left: 25px;
+            }
+        </style>
+
+        <h:form id="form">
+            <p:dataView var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+                <p:dataViewGridItem>
+                    <p:panel header="#{promos.tituloPromo}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+
+                            <h:outputText value="#{promos.correoUsuario}" />
+
+                            <p:commandLink update=":form:promoDetail" oncomplete="PF('promoDialog').show()" title="View Detail">
+                                <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
+                                <f:setPropertyActionListener value="#{promos}" target="#{DataGridView.promos}" />
+                            </p:commandLink>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:dataViewGridItem>
+
+                <p:dataViewListItem>
+                    <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">> 
+
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Título:" />
+                                <h:outputText value="#{promos.tituloPromo}" style="font-weight: bold"/>
+
+                                <h:outputText value="Fecha de inicio de la Promoción:" />
+                                <h:outputText value="#{promos.fechaInicio}" style="font-weight: bold"/>
+
+                                <h:outputText value="Fecha de finalización de la Promoción:" />
+                                <h:outputText value="#{promos.fechaFin}" style="font-weight: bold"/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+
+                        <p:commandLink update=":form:carDetail" oncomplete="PF('promoDialog').show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{promos}" target="#{DataGridView.selectedPromo}" />
+                        </p:commandLink>
+                    </h:panelGrid>
+                </p:dataViewListItem>
+            </p:dataView>
+
+            <p:dialog header="Promo Info" widgetVar="promoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty DataGridView.selectedPromo}" columnClasses="label,value">
+
+                        <h:outputText value="Título:" />
+                        <h:outputText value="#{DataGridView.selectedPromo.tituloPromo}" />
+
+                        <h:outputText value="Link hacia la Promoción: " />
+                        <h:outputText value="#{DataGridView.selectedPromo.linkPromo}" />
+
+                        <h:outputText value="Descripción de la Promoción: " />
+                        <h:outputText value="#{DataGridView.selectedPromo.descripcionPromo}" />
+
+                        <h:outputText value="Correo de propietario de la promoción: " />
+                        <h:outputText value="$#{DataGridView.selectedPromo.correoUsuario}" />
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
 
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
 
