@@ -230,7 +230,6 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
                 promo.setCorreoUsuario(rs.getString("Usuario_correoUsuario"));
                 System.out.println("Imprimir nombre promo");
                 System.out.println("NOMBRE PROMO: "+promo.getTituloPromo());
-                
                 listaPromo.add(promo);
             }
             

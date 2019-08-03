@@ -109,66 +109,37 @@ and open the template in the editor.
             <p:dataView var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         gridIcon="pi pi-th-large" listIcon="pi pi-bars">
-
-                <p:dataViewGridItem>
-                    <p:panel header="#{promos.tituloPromo}" style="text-align:center">
-                        <h:panelGrid columns="1" style="width:100%">
-
-                            <h:outputText value="#{promos.correoUsuario}" />
-
-                            <p:commandLink update=":form:promoDetail" oncomplete="PF('promoDialog').show()" title="View Detail">
-                                <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
-                                <f:setPropertyActionListener value="#{promos}" target="#{DataGridView.promos}" />
-                            </p:commandLink>
-                        </h:panelGrid>
-                    </p:panel>
-                </p:dataViewGridItem>
-
                 <p:dataViewListItem>
-                    <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">> 
+                    <h:panelGrid columns="1" style="width:50%" columnClasses="logo"> 
 
-                        <p:outputPanel>
-                            <h:panelGrid columns="2" cellpadding="5">
-                                <h:outputText value="Título:" />
-                                <h:outputText value="#{promos.tituloPromo}" style="font-weight: bold"/>
-
+                        <p:outputPanel >
+                            <h:panelGrid columns = "2" cellpadding = "5" >
+                                <h:outputText value="#{promos.tituloPromo}" style="font-weight: bold; font-size: 35px"/>
+                                
+                                
+                                <h:outputText value="#{promos.descripcionPromo}" style="font-weight: bold;padding: 200px "/>
+                                
                                 <h:outputText value="Fecha de inicio de la Promoción:" />
-                                <h:outputText value="#{promos.fechaInicio}" style="font-weight: bold"/>
-
+                                <h:outputText value="    #{promos.fechaInicio}" style="font-weight: bold"/>
+                                
                                 <h:outputText value="Fecha de finalización de la Promoción:" />
-                                <h:outputText value="#{promos.fechaFin}" style="font-weight: bold"/>
+                                <h:outputText value="    #{promos.fechaFin}" style="font-weight: bold"/>
+                                
+                                <h:outputText value="Fecha de publicación de la Promoción:" />
+                                <h:outputText value="    #{promos.fechaPublicacion}" style="font-weight: bold"/>
+                                
+                                <h:outputText value="Link:" />
+                                <h:outputText value="    #{promos.linkPromo}" style="font-weight: bold"/>
+                                
+                                <h:column />
+                                
+                                <h:outputText value="Propietario de la Promo: #{promos.correoUsuario}" style="font-weight: bold; padding-left: 100px "/>
                             </h:panelGrid>
                         </p:outputPanel>
-
-                        <p:commandLink update=":form:carDetail" oncomplete="PF('promoDialog').show()" title="View Detail">
-                            <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
-                            <f:setPropertyActionListener value="#{promos}" target="#{DataGridView.selectedPromo}" />
-                        </p:commandLink>
                     </h:panelGrid>
                 </p:dataViewListItem>
             </p:dataView>
-
-            <p:dialog header="Promo Info" widgetVar="promoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                <p:outputPanel id="carDetail" style="text-align:center;">
-                    <p:panelGrid  columns="2" rendered="#{not empty DataGridView.selectedPromo}" columnClasses="label,value">
-
-                        <h:outputText value="Título:" />
-                        <h:outputText value="#{DataGridView.selectedPromo.tituloPromo}" />
-
-                        <h:outputText value="Link hacia la Promoción: " />
-                        <h:outputText value="#{DataGridView.selectedPromo.linkPromo}" />
-
-                        <h:outputText value="Descripción de la Promoción: " />
-                        <h:outputText value="#{DataGridView.selectedPromo.descripcionPromo}" />
-
-                        <h:outputText value="Correo de propietario de la promoción: " />
-                        <h:outputText value="$#{DataGridView.selectedPromo.correoUsuario}" />
-                    </p:panelGrid>
-                </p:outputPanel>
-            </p:dialog>
         </h:form>
-
-
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
 
     </body>
