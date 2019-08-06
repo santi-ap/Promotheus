@@ -78,11 +78,6 @@ public class ControllerPromo {
         //return "registeredLandingPage.xhtml?faces-redirect=true";
     }
     
-    public void mostrarPromo ()
-    {
-        
-    }
-    
     public void redirect(String page)
     {
           try {

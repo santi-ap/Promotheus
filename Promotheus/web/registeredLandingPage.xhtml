@@ -14,7 +14,7 @@ and open the template in the editor.
         <title>Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <body>
+    <body style="background-color: darkgray">
         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
         <h:form >
             <p:menubar style="margin:1px 1px 1px 1px;">
@@ -175,6 +175,53 @@ and open the template in the editor.
             </p:dialog>
         </h:form>
 
+
+=======
+
+            .logo {
+                width: 5%;
+            }
+            .detail {
+                width: 85%;
+                padding-left: 25px;
+            }
+        </style>
+
+        <h:form id="form">
+            <p:dataView var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+                <p:dataViewListItem>
+                    <h:panelGrid columns="1" style="width:50%" columnClasses="logo"> 
+
+                        <p:outputPanel >
+                            <h:panelGrid columns = "2" cellpadding = "5" >
+                                <h:outputText value="#{promos.tituloPromo}" style="font-weight: bold; font-size: 35px"/>
+                                
+                                
+                                <h:outputText value="#{promos.descripcionPromo}" style="font-weight: bold;padding: 200px "/>
+                                
+                                <h:outputText value="Fecha de inicio de la Promoción:" />
+                                <h:outputText value="    #{promos.fechaInicio}" style="font-weight: bold"/>
+                                
+                                <h:outputText value="Fecha de finalización de la Promoción:" />
+                                <h:outputText value="    #{promos.fechaFin}" style="font-weight: bold"/>
+                                
+                                <h:outputText value="Fecha de publicación de la Promoción:" />
+                                <h:outputText value="    #{promos.fechaPublicacion}" style="font-weight: bold"/>
+                                
+                                <h:outputText value="Link:" />
+                                <h:outputText value="    #{promos.linkPromo}" style="font-weight: bold"/>
+                                
+                                <h:column />
+                                
+                                <h:outputText value="Propietario de la Promo: #{promos.correoUsuario}" style="font-weight: bold; padding-left: 100px "/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                </p:dataViewListItem>
+            </p:dataView>
+        </h:form>
 
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
 
