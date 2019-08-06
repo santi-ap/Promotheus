@@ -10,6 +10,8 @@ import com.bsod.promotheus.usuario.Promo;
 import static com.sun.javafx.logging.PulseLogger.addMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -20,6 +22,7 @@ import javax.faces.bean.SessionScoped;
 public class ControllerPromo {
     private ServicioPromo servicioPromo = new ServicioPromo();
     private Promo nuevaPromo = new Promo();
+    private String categoria;
     
     
 
@@ -55,20 +58,45 @@ public class ControllerPromo {
     public void setNuevaPromo(Promo nuevaPromo) {
         this.nuevaPromo = nuevaPromo;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
     
-    public String guardarPromo (String correoUsuario)
+    public void guardarPromo (String correoUsuario)
     {
-        System.out.println(correoUsuario);
-        this.getNuevaPromo().setCorreoUsuario(correoUsuario);
-        System.out.println( this.getNuevaPromo().getCorreoUsuario());      
+        
+        this.getNuevaPromo().setCategoria(categoria);
+        this.getNuevaPromo().setCorreoUsuario(correoUsuario);      
         this.getServicioPromo().insert(this.getNuevaPromo());
-        addMessage("Insertando promo...");
-        return "registeredLandingPage.xhtml?faces-redirect=true";
+        this.setNuevaPromo(new Promo());
+        this.redirect("registeredLandingPage");
+        //return "registeredLandingPage.xhtml?faces-redirect=true";
     }
     
     public void mostrarPromo ()
     {
         
+    }
+    
+    public void redirect(String page)
+    {
+          try {
+            HttpServletRequest request = (HttpServletRequest) FacesContext
+                    .getCurrentInstance().getExternalContext().getRequest();
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect(
+                            request.getContextPath()
+                            + "/faces/" + page + ".xhtml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
    

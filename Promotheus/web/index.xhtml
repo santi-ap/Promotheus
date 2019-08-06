@@ -12,6 +12,10 @@
         <title>Login</title>
     </h:head>
     <h:body>
+<!--         Facebook JDK /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=423195607739886&autoLogAppEvents=1"></script>
+ Facebook JDK /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
         <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
         <center>
                <p:messages id="messages" showDetail="true" closable="true">
@@ -53,7 +57,11 @@
                     var myClass = Java.type("com.bsod.promotheus.controladores.controllerUsuario.");
                     myClass.Logear();
                     }
+                    
  </script>
+<!--                 Facebook Login Boton //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                    <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
+                     Facebook Login Boton //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
    <button onclick="myFunction()">Sign Out</button>
    <script>
       function myFunction() {

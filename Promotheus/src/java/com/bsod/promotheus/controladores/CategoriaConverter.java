@@ -18,25 +18,24 @@ import javax.faces.convert.FacesConverter;
  * @author coded
  */
 @FacesConverter(value = "categoriaConverter")
-public class CategoriaConverter implements Converter{
-    
+public class CategoriaConverter implements Converter {
+
     private static final long serialVersionUID = 1L;
 
-    private ServicioCategoria servicioCategoria ;
+    private ServicioCategoria servicioCategoria = new ServicioCategoria();
 
     public CategoriaConverter() {
         servicioCategoria = new ServicioCategoria();
     }
-
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component,
             String submittedValue) {
         if (submittedValue != null && submittedValue.trim().length() > 0) {
             try {
-                return servicioCategoria.selectAll("nombreCategoria", this);
+                return servicioCategoria.select("nombreCategoria", "nombreCategoria", submittedValue);
             } catch (Exception exception) {
-                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "No es un Usuario vÃ¡lido."));
+                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "No existe la categoria"));
             }
         } else {
             return null;
@@ -53,7 +52,3 @@ public class CategoriaConverter implements Converter{
         }
     }
 }
-
-
-
-

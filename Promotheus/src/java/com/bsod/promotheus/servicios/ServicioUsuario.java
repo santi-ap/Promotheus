@@ -189,6 +189,7 @@ public class ServicioUsuario extends Servicio implements InterfaceDAO{
             return listaDatosUsuario;
             }
             
+            
         }catch(Exception e){
             e.printStackTrace();
         }finally{

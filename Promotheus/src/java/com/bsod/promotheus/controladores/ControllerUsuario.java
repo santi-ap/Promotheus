@@ -11,6 +11,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.applet.*;
+import netscape.javascript.*;
+import java.awt.*;
 
 /**
  *
@@ -18,7 +21,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name="controllerUsuario")
 @SessionScoped
-public class ControllerUsuario {
+public class ControllerUsuario extends Applet{
     
     private String correoInput;
     private String nombreInput;
@@ -176,4 +179,10 @@ public class ControllerUsuario {
         return "index.xhtml?faces-redirect=true";
     }
     // ----------------------------- TERMINA LOGICA DE REGISTRO ---------------------------------------
+    public String redirectToLogin()
+    {
+        FacesContext context = FacesContext.getCurrentInstance();//se instancia un nuevo mensaje para el web app
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "LOGIN REQUERIDO", "Un usuario registrado es necesario para agregar una promocion nueva.\n Redireccionando..."));
+        return "index.xhtml?faces-redirect=true";
+    }
 }

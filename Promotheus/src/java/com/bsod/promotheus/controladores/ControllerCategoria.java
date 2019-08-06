@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -19,16 +20,18 @@ import javax.faces.model.SelectItem;
  * @author Asus
  */
 @ManagedBean(name = "controllerCategoria")
+@SessionScoped
 public class ControllerCategoria {
+
     private ServicioCategoria servicioCategoria = new ServicioCategoria();
     FacesContext context = FacesContext.getCurrentInstance();
 
-    private String categoria;  
+    private String categoria;
     private List<String> categorias = new ArrayList<>();
-    
-    public ControllerCategoria ()
-    {}
-    
+
+    public ControllerCategoria() {
+    }
+
     /**
      * @return the servicioCategoria
      */
@@ -42,28 +45,28 @@ public class ControllerCategoria {
     public void setServicioCategoria(ServicioCategoria servicioCategoria) {
         this.servicioCategoria = servicioCategoria;
     }
-    
-   public String getCategoria() {
+
+    public String getCategoria() {
         return categoria;
     }
- 
+
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
- 
+
     public List<String> getCategorias() {
         this.setCategorias();
         return categorias;
     }
- 
+
     public void setCategorias() {
         this.categorias = servicioCategoria.selectNombreCategoria();
-        
+
     }
-    
-    public void printCat(){  // METHOD TO TEST WHAT THE SELECTED CATEGORY IS
-        System.out.println("testing");
+
+    public void probarCategoria() {
+        System.out.println("Pirnting cat");
         System.out.println(this.categoria);
-        
     }
+
 }
