@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ControllerPromo {
     private ServicioPromo servicioPromo = new ServicioPromo();
     private Promo nuevaPromo = new Promo();
+    private String categoria;
     
     
 
@@ -57,12 +58,20 @@ public class ControllerPromo {
     public void setNuevaPromo(Promo nuevaPromo) {
         this.nuevaPromo = nuevaPromo;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
     
     public void guardarPromo (String correoUsuario)
     {
-        System.out.println(correoUsuario);
-        this.getNuevaPromo().setCorreoUsuario(correoUsuario);
-        System.out.println( this.getNuevaPromo().getCorreoUsuario());      
+        
+        this.getNuevaPromo().setCategoria(categoria);
+        this.getNuevaPromo().setCorreoUsuario(correoUsuario);      
         this.getServicioPromo().insert(this.getNuevaPromo());
         this.setNuevaPromo(new Promo());
         this.redirect("registeredLandingPage");

@@ -5,9 +5,7 @@
  */
 package com.bsod.promotheus.usuario;
 
-import java.sql.Date;
-
-
+import java.util.Objects;
 /**
  *
  * @author Asus
@@ -21,6 +19,9 @@ public class Promo {
     private java.util.Date fechaPublicacion;
     private int id;
     private String correoUsuario;
+    private String categoria;
+
+    
     
     public Promo ()
     {
@@ -114,7 +115,7 @@ public class Promo {
         if (this.fechaPublicacion == null)
             this.setFechaPublicacion(new java.util.Date());
         
-            return fechaPublicacion;
+        return fechaPublicacion;
     }
 
     /**
@@ -137,7 +138,64 @@ public class Promo {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public String getCategoria() {
+        return categoria;
+    }
 
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.linkPromo);
+        hash = 53 * hash + Objects.hashCode(this.tituloPromo);
+        hash = 53 * hash + Objects.hashCode(this.descripcionPromo);
+        hash = 53 * hash + Objects.hashCode(this.fechaInicio);
+        hash = 53 * hash + Objects.hashCode(this.fechaFin);
+        hash = 53 * hash + Objects.hashCode(this.fechaPublicacion);
+        hash = 53 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Promo other = (Promo) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.linkPromo, other.linkPromo)) {
+            return false;
+        }
+        if (!Objects.equals(this.tituloPromo, other.tituloPromo)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcionPromo, other.descripcionPromo)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaInicio, other.fechaInicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaFin, other.fechaFin)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaPublicacion, other.fechaPublicacion)) {
+            return false;
+        }
+        return true;
+    }
     /**
      * @return the correoUsuario
      */
@@ -185,7 +243,9 @@ public class Promo {
     public java.sql.Date getFechaFinSQL ()
     {
         return this.sqlDate(this.getFechaFin());
+
     }
+    
     
     
     
