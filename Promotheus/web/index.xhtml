@@ -21,6 +21,22 @@
                 
             }
             
+            .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            }
+          
+            .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
         </style>
         
         <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
@@ -28,7 +44,7 @@
 
             <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
         </h:form>
-        <div align="center">
+        <div align="center" class="vertical-center center">
                <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
@@ -37,6 +53,7 @@
                 <div>
                 <h:panelGrid id="pG1" columns="3">
     
+
                     <h:outputLabel value="Correo Electrónico"/>
                     <p:inputText id="correo" value="#{controllerUsuario.correoInput}" />
                     <p:message for="correo" />
@@ -44,7 +61,6 @@
                     <h:outputLabel value="Contraseña"/>
                     <p:password id="contraseña" value="#{controllerUsuario.passInput}"/>
                     <p:message for="contraseña" />
-
 
                 </h:panelGrid>
 
