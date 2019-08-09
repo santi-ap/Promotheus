@@ -28,10 +28,37 @@ public class ServicioUsuario_has_Favoritos extends Servicio implements Interface
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    //Para Tommasso
+
+    /**
+     * 
+     * @param objeto a string composed by a,b where a is the correo of the usuario and b is the promo id
+     */
     @Override
     public void insert(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            //vamos a tomar lo que hay que insertar como un String donde los IDs se separan por comas. Por ejemplo "12,5"
+/*quitenifty*/String[] temp = ((String)objeto).split(","); //aqui se separan los dos IDs por la coma en un array y queda ["12","5"]
+            String correoUsuario = temp[0];//aqui se agarra el primer ID
+            int idPromo = Integer.parseInt(temp[1]);//aqui se agarra el segundo ID
+            //STEP 3: Execute a querey
+            super.conectar();
+
+            String sql;
+            sql = "INSERT INTO usuario_has_Favoritos values (?,?);";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, correoUsuario);
+            preparedStatement.setInt(2, idPromo);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     @Override
