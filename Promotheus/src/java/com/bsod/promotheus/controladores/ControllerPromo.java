@@ -5,9 +5,12 @@
  */
 package com.bsod.promotheus.controladores;
 
+import com.bsod.promotheus.servicios.Servicio;
 import com.bsod.promotheus.servicios.ServicioPromo;
+import com.bsod.promotheus.servicios.ServicioUsuario_has_Favoritos;
 import com.bsod.promotheus.usuario.Promo;
 import static com.sun.javafx.logging.PulseLogger.addMessage;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -23,6 +26,7 @@ public class ControllerPromo {
     private ServicioPromo servicioPromo = new ServicioPromo();
     private Promo nuevaPromo = new Promo();
     private String categoria;
+    private String myFav;
     
     
 
@@ -93,6 +97,33 @@ public class ControllerPromo {
             e.printStackTrace();
         }
     }
+    
+
+
+    /**
+     * @return the myFav
+     */
+    public String getMyFav() {
+        return myFav;
+    }
+
+    /**
+     * @param myFav the myFav to set
+     */
+    public void setMyFav(String myFav) {
+        this.myFav = myFav;
+    }
+    
+    public void composeMyFav(int idPromo, String correoUsuario)
+    {
+        this.myFav = correoUsuario + "," + Integer.toString(idPromo);
+        Servicio sendToFav = new ServicioUsuario_has_Favoritos();
+        ((ServicioUsuario_has_Favoritos)sendToFav).insert(this.myFav);
+        FacesContext context = FacesContext.getCurrentInstance();
+         
+        context.addMessage(null, new FacesMessage("Success",  "Promo Insertada en la lista de favoritos." ) );
+    }
+    
     
    
 }

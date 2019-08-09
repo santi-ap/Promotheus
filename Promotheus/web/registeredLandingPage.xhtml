@@ -13,6 +13,8 @@ and open the template in the editor.
 
         <title>Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       <!-- <h:outputStylesheet library="webjars" name="font-awesome/5.0.0/css/font-awesome.min-jsf.css" /> -->
+
     </h:head>
     <body>
         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -107,8 +109,15 @@ and open the template in the editor.
 
 .description {
     text-align:left;
-}
+}   
+.favouriteButton 
+{
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer
 
+}
 .zoom:hover {
   transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
@@ -123,6 +132,11 @@ body {
 
 .icon {
     
+}
+
+.fa-heart 
+{
+    color: red;
 }
 
 icon:hover{
@@ -154,8 +168,10 @@ icon:hover{
                         <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
                         <h:outputText value="#{promos.linkPromo}" class="link"/> <div></div>
                         <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
-                        <i class="fa fa-trash icon" aria-hidden="true"></i> 
+                        <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title="" image ="img/heart.png" class ="favouriteButton">
+                        </p:commandButton>
                     </h:panelGrid>
+                    
                 </p:panel>
 
         </p:dataGrid>
