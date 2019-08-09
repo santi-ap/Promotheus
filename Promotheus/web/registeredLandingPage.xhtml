@@ -14,7 +14,7 @@ and open the template in the editor.
         <title>Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <body style="background-color: darkgray">
+    <body style="background-color: white">
         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
         <h:form >
             <p:menubar style="margin:1px 1px 1px 1px;">
@@ -41,13 +41,13 @@ and open the template in the editor.
         <!-- <"AGREGAR PROMO" POP-UP FORM ////////////////////////////////////////////////////////////////////////////////////////// -->
 
         <h:form>        
-            <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Agregar Promo">
+            <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Agregar Promo" style="position: absolute">
                 <p:graphicImage name="img/buttonAdd.png" />
             </h:outputLink>
 
             <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
-            <p:dialog header="Agregar Promo" widgetVar="dlg" resizable="true">
+            <p:dialog header="Agregar Promo" widgetVar="dlg" resizable="true" position="absolute">
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputLabel for="Titulo" value="Titulo:" />
                     <p:inputText id="titulo" value="#{controllerPromo.nuevaPromo.tituloPromo}" required="true" label="titulo" />
@@ -84,8 +84,6 @@ and open the template in the editor.
             </p:dialog>    
         </h:form>
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
-
-
         <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
         <style type="text/css"> 
             /*demo*/
@@ -96,23 +94,32 @@ and open the template in the editor.
                 border-bottom-color: var(--input-border-color, #A8A8A8);
             }
 
-            .logo {
+            .promo {
                 width: 5%;
-            }
-            .detail {
-                width: 85%;
-                padding-left: 25px;
             }
         </style>
 
         <h:form id="form">
+            <!-- <FILTRO POR CATEGORIA ////////////////////////////////////////////////////////////////////////////////////////// -->
+            <div align="right"> 
+                <h:outputText value="Filtro por Categoría:  " style="font-weight: bold; font-family: Arial; font-size: 15px"/>
+                <p:selectOneButton value="#{controllerPromo.categoria}" style="font-weight: bold; font-family: ">
+                    <f:selectItem itemLabel="Cocina" itemValue="Cocina" />
+                    <f:selectItem itemLabel="Deportes" itemValue="Deportes" />
+                    <f:selectItem itemLabel="Electronicos" itemValue="Electronicos" />
+                    <f:selectItem itemLabel="Muebles" itemValue="Muebles" />
+                </p:selectOneButton>
+                <p:spacer />
+                <br> </br>
+            </div>
+            <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
             <p:dataView var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+                        gridIcon="pi pi-th-large" listIcon="pi pi-bars" >
                 <p:dataViewListItem>
-                    <h:panelGrid columns="1" style="width:50%" columnClasses="logo"> 
+                    <h:panelGrid columns="1" style="width:50%" columnClasses="promo"> 
 
-                        <p:outputPanel >
+                        <p:outputPanel>
                             <h:panelGrid columns = "2" cellpadding = "5" >
                                 <h:outputText value="#{promos.tituloPromo}" style="font-weight: bold; font-size: 35px"/>
                                 
