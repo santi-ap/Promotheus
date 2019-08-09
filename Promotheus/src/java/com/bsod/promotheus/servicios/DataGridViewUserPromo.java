@@ -5,6 +5,7 @@ import com.bsod.promotheus.usuario.Promo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -14,30 +15,48 @@ import javax.faces.bean.ViewScoped;
  *
  * @author Wendell Monge
  */
-@ManagedBean(name = "DataGridView")
+@ManagedBean(name = "DataGridViewUserPromo")
 @ViewScoped
 @SessionScoped
-public class DataGridView implements Serializable {
+public class DataGridViewUserPromo implements Serializable {
 
-    private ArrayList<Promo> promos;
+private ArrayList<Promo> promos;
 
-    private Promo selectedPromo;
-
+private Promo selectedPromo;
+     
     @ManagedProperty("#{ServicioPromo}")
     private ServicioPromo service = new ServicioPromo();
-    private ControllerUsuario cu = new ControllerUsuario();
-
+    
+    @ManagedProperty("#{controllerUsuario}")
+    private ControllerUsuario controller = new ControllerUsuario();
+    
+    @PostConstruct
     public void init() {
-        promos = service.selectAllPromos();
+        promos = service.selectAllTypePromo("Usuario_correoUsuario", this.controller.getCorreoInput());
     }
 
-    public List<Promo> getPromos() {
-        this.init();
+    public ArrayList<Promo> getPromos() {
         return promos;
+    }
+
+    public void setPromos(ArrayList<Promo> promos) {
+        this.promos = promos;
+    }
+
+    public ServicioPromo getService() {
+        return service;
     }
 
     public void setService(ServicioPromo service) {
         this.service = service;
+    }
+
+    public ControllerUsuario getController() {
+        return controller;
+    }
+
+    public void setController(ControllerUsuario controller) {
+        this.controller = controller;
     }
 
     public Promo getSelectedPromo() {
@@ -48,12 +67,5 @@ public class DataGridView implements Serializable {
         this.selectedPromo = selectedPromo;
     }
 
-//    public void setListUserPromos() {
-//        this.promosByUser = service.selectAll("Usuario_correoUsuario",cu.retornaNombrePorCorreo());
-//    }
-// 
-//    public List<Promo> getPromosByUser() {
-//        this.setListUserPromos();
-//        return this.promosByUser;// do FOR and case form abject top Promo
-//    }
+    
 }

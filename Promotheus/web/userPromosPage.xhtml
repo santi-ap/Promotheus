@@ -10,12 +10,10 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-
-        <title>Promotheus</title>
+        <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
-        <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
         <h:form >
             <p:menubar style="margin:1px 1px 1px 1px;">
                 <p:menuitem>
@@ -24,7 +22,7 @@ and open the template in the editor.
                 <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
                 <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Mis Favoritos" action="favoritePromos.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Mis Me Gusta" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
                     <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
@@ -33,59 +31,9 @@ and open the template in the editor.
                                       background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
                                       action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
                 </f:facet>
-            </p:menubar>
-            <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
+            </p:menubar>        
         </h:form>
 
-        <!-- <"AGREGAR PROMO" POP-UP FORM ////////////////////////////////////////////////////////////////////////////////////////// -->
-
-        <h:form>        
-            <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Agregar Promo">
-                <p:graphicImage name="img/buttonAdd.png" />
-            </h:outputLink>
-
-            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-
-            <p:dialog header="Agregar Promo" widgetVar="dlg" resizable="true">
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel for="Titulo" value="Titulo:" />
-                    <p:inputText id="titulo" value="#{controllerPromo.nuevaPromo.tituloPromo}" required="true" label="titulo" />
-
-                    <h:outputLabel for="Descripcion" value="Descripcion: " />
-                    <p:inputText id="descripcion" value="#{controllerPromo.nuevaPromo.descripcionPromo}" required="true" label="descripcion" />
-
-                    <h:outputLabel for="Link" value="Link:" />
-                    <p:inputText id="link" value="#{controllerPromo.nuevaPromo.linkPromo}" required="false" label="link" /> 
-
-
-                    <h:outputLabel for="Categoria" value="Categoria:" />
-
-                    <p:selectOneMenu id="CategoriaComboBox"  value="#{controllerPromo.categoria}"
-                                     dynamic="true"  style="min-width:150px; width:188px;"> // IN VALUE WILL MAKE THE ATRIBUTE EQUAL THE SELECTED CAT
-                        <f:selectItem itemLabel="Escoja una categoria" itemValue="" />
-
-                        <f:selectItems value="#{controllerCategoria.categorias}" var="categoria" 
-                                       itemLabel="#{categoria}" itemValue="#{controllerCategoria.categoria}" 
-                                       /> //IN VALUE CALLS LIST OF CATEGORIES TO PRINT IN THE COMBO BOX
-                    </p:selectOneMenu>
-
-                    <h:outputLabel for="date1" value="Fecha de Inicio de la Promo: " />
-                    <p:calendar id="dataInicio" value="#{controllerPromo.nuevaPromo.fechaInicio}" />
-
-                    <h:outputLabel for="date2" value="Fecha en que Termina la Promo: " />
-                    <p:calendar id="dataFin" value="#{controllerPromo.nuevaPromo.fechaFin}" />
-
-                    <f:facet name="footer">
-                        <p:commandButton value="Agregar" update="growl" action="#{controllerPromo.guardarPromo(controllerUsuario.correoInput)}" />
-
-                    </f:facet>  
-                </h:panelGrid>
-            </p:dialog>    
-        </h:form>
-        <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
-
-
-        <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
        <style>
 .zoom {
   padding: 2px;
@@ -138,11 +86,11 @@ icon:hover{
 
 </style>
 
-               <div>
+        <div>
        <br> </br>
    </div>
         <h:form id="form" style="width:90%; margin:auto;" >
-            <p:dataGrid var="promos" value="#{DataGridView.promos}" columns="3" layout="grid"
+            <p:dataGrid var="promos" value="#{DataGridViewUserPromo.promos}" columns="3" layout="grid"
                         rows="12" paginator="false" id="promos"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16"
@@ -162,7 +110,7 @@ icon:hover{
             
         </h:form>
 
-        <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-        
+
+
     </body>
 </html>
