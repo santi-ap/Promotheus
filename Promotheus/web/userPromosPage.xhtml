@@ -9,11 +9,133 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
+    <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+    </h:head>
     <body>
-        <div>TODO write content</div>
+        <h:form >
+            <p:menubar style="margin:1px 1px 1px 1px;">
+                <p:menuitem>
+                    <h:graphicImage name="img/finallogo2.PNG" height="50" />
+                </p:menuitem>
+                <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
+                <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Mis Me Gusta" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
+                <f:facet name="options">
+                    <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
+                    <p:commandButton value="#{controllerUsuario.retornaNombrePorCorreo()}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
+                    <p:commandButton  process="myFormField1 myFormField2 @this"  value="Cerrar Sesion" style="height: 35px; margin:20px 10px 1px 1px; 
+                                      background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
+                                      action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
+                </f:facet>
+            </p:menubar>        
+        </h:form>
+
+        <style type="text/css"> 
+            /*demo*/
+            .ui-dataview-list .ui-dataview-row {
+                border-bottom: 1px solid #A8A8A8;
+                padding: 25px 10px;
+                /* with the exported variables from Nova and Luna Themes*/
+                border-bottom-color:var(input-border-color, #A8A8A8);
+            }
+
+            .logo {
+                width: 5%;
+            }
+            .detail {
+                width: 85%;
+                padding-left: 25px;
+            }
+        </style>
+
+        <h:form id="form">
+            <p:dataView var="promos" value="#{DataGridViewUserPromo.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+                <p:dataViewGridItem>
+                    <p:panel header="#{promos.tituloPromo}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+
+                            <h:outputText value="#{promos.correoUsuario}" />
+
+                            <p:commandLink update=":form:promoDetail" oncomplete="PF('promoDialog').show()" title="View Detail">
+                                <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
+                                <f:setPropertyActionListener value="#{promos}" target="#{DataGridViewUserPromo.promos}" />
+                            </p:commandLink>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:dataViewGridItem>
+
+
+
+
+                <p:dataViewListItem>
+                    <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">> 
+
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Título:" />
+                                <h:outputText value="#{promos.tituloPromo}" style="font-weight: bold"/>
+
+                                <h:outputText value="Fecha de inicio de la Promoción:" />
+                                <h:outputText value="#{promos.fechaInicio}" style="font-weight: bold"/>
+
+                                <h:outputText value="Fecha de finalización de la Promoción:" />
+                                <h:outputText value="#{promos.fechaFin}" style="font-weight: bold"/>
+
+                                <div id="fb-root"></div>
+                                <script>(function (d, s, id) {
+                                        var js, fjs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id))
+                                            return;
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }(document, 'script', 'facebook-jssdk'));</script>
+
+                                <!-- Your share button code -->
+                                <div 
+                                     data-href="https://www.youtube.com/watch?v=7BOJUmmW5K4&t=199s" 
+                                     data-layout="button_count">
+                                </div>
+
+                            </h:panelGrid>
+                        </p:outputPanel>
+
+                        <p:commandLink update=":form:carDetail" oncomplete="PF('promoDialog').show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon pi pi-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{promos}" target="#{DataGridViewUserPromo.selectedPromo}" />
+                        </p:commandLink>
+                    </h:panelGrid>
+                </p:dataViewListItem>
+            </p:dataView>
+
+            <p:dialog header="Promo Info" widgetVar="promoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty DataGridViewUserPromo.selectedPromo}" columnClasses="label,value">
+
+                        <h:outputText value="Título:" />
+                        <h:outputText value="#{DataGridViewUserPromo.selectedPromo.tituloPromo}" />
+
+                        <h:outputText value="Link hacia la Promoción: " />
+                        <h:outputText value="#{DataGridViewUserPromo.selectedPromo.linkPromo}" />
+
+                        <h:outputText value="Descripción de la Promoción: " />
+                        <h:outputText value="#{DataGridViewUserPromo.selectedPromo.descripcionPromo}" />
+
+                        <h:outputText value="Correo de propietario de la promoción: " />
+                        <h:outputText value="$#{DataGridViewUserPromo.selectedPromo.correoUsuario}" />
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+
+
     </body>
 </html>
