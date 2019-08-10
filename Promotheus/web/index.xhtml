@@ -12,22 +12,65 @@
         <title>Login</title>
     </h:head>
     <h:body>
+        
+        <style type="text/css"> 
+       
+            body {
+            
+                background-color: #CB022C;
+                
+            }
+            
+            .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            }
+          
+            .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.font {
+    
+    color: white;
+    font-size:18px;
+    text-shadow: 2px 2px #3B0B0B;
+    
+}
+
+        </style>
+        
         <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
-        <center>
+         <h:form style="margin:auto">
+
+            <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
+        </h:form>
+        <div align="center" class="vertical-center center">
+        <h:graphicImage name="img/finallogo2.PNG" height="50" style="border-radius:10px; margin:5px; opacity:40%; box-shadow: 0px 1px 2px 1px #3B0B0B;"/>
                <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-            <h:form id="form1"> 
+            
+            <h:form id="form1">
+                <div>
                 <h:panelGrid id="pG1" columns="3">
+    
 
-                    <h:outputLabel value="Correo Electrónico"/>
-                    <p:inputText id="correo" value="#{controllerUsuario.correoInput}" />
+                    <h:outputLabel value="Correo Electrónico" class="font"/>
+                    <p:inputText id="correo" value="#{controllerUsuario.correoInput}" style="margin:2px;"/>
                     <p:message for="correo" />
 
-                    <h:outputLabel value="Contraseña"/>
-                    <p:password id="contraseña" value="#{controllerUsuario.passInput}"/>
+                    <h:outputLabel value="Contraseña" class="font"/>
+                    <p:password id="contraseña" value="#{controllerUsuario.passInput}" style="margin:2px;"/>
                     <p:message for="contraseña" />
-
 
                 </h:panelGrid>
 
@@ -61,7 +104,8 @@
       location.reload();
    }
    </script>
+                </div>
         </h:form>
-        </center>
+        </div>
     </h:body>
 </html>

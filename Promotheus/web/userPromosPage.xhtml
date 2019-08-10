@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <h:form >
+            <p:menubar style="margin:1px 1px 1px 1px;">
+                <p:menuitem>
+                    <h:graphicImage name="img/finallogo2.PNG" height="50" />
+                </p:menuitem>
+                <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
+                <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Mis Me Gusta" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
+                <f:facet name="options">
+                    <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
+                    <p:commandButton value="#{controllerUsuario.retornaNombrePorCorreo()}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
+                    <p:commandButton  process="myFormField1 myFormField2 @this"  value="Cerrar Sesion" style="height: 35px; margin:20px 10px 1px 1px; 
+                                      background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
+                                      action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
+                </f:facet>
+            </p:menubar>        
+        </h:form>
+
+       <style>
+.zoom {
+  padding: 2px;
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+}
+
+.link:hover {
+    color:#0A0A2A;
+}
+
+.link{
+    
+    font-size:14px; 
+    color:#2E9AFE;  
+    text-decoration: underline;
+    
+}
+
+.description {
+    text-align:left;
+}
+
+.zoom:hover {
+  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+body {
+    background-color: #FBEFEF;
+}
+
+.image {
+    border-radius :10px;
+}
+
+.icon {
+    
+}
+
+icon:hover{
+    transform: scale(1.2);
+}
+
+  
+            
+            body{
+                background-image: url();
+             
+            }
+
+</style>
+
+        <div>
+       <br> </br>
+   </div>
+        <h:form id="form" style="width:90%; margin:auto;" >
+            <p:dataGrid var="promos" value="#{DataGridViewUserPromo.promos}" columns="3" layout="grid"
+                        rows="12" paginator="false" id="promos"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16"
+                        >
+                
+
+                <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
+                    <h:panelGrid columns="2" style="width:100%;">
+                        <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
+                        <h:outputText value="#{promos.linkPromo}" class="link"/> <div></div>
+                        <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
+                        <i class="fa fa-trash icon" aria-hidden="true"></i> 
+                    </h:panelGrid>
+                </p:panel>
+
+        </p:dataGrid>
+            
+        </h:form>
+
+
+
+    </body>
+</html>

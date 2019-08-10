@@ -200,6 +200,7 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
         //retorna lo que se selecciono
         return listaPromo;
     }
+    
     public ArrayList<Promo> selectAllPromos() {
        ArrayList<Promo> listaPromo= new ArrayList<>();
         ResultSet rs = null;
@@ -247,4 +248,55 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
         //retorna lo que se selecciono
         return listaPromo;
     }
+    
+       public ArrayList<Promo> selectAllTypePromo(Object queColumna, Object queValor) {
+       ArrayList<Promo> listaPromo= new ArrayList<>();
+        ResultSet rs = null;
+        Statement stmt=null;
+        try{
+            //STEP 3: Execute a query
+            super.conectar();
+            System.out.println("Creando statement...");
+            stmt=conn.createStatement();
+            String sql;
+            
+            //hacemos el select con lo que buscamos, de cual columna y cual valor de la columna
+            sql="SELECT * FROM Promo WHERE "+queColumna+" = ?;";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, queValor.toString());
+            rs=preparedStatement.executeQuery(); 
+            
+            //STEP 3.1: Extract data from result set
+            while(rs.next()){
+                //Retrieve by column name
+                Promo promo = new Promo();
+                promo.setId(rs.getInt("idPromo"));
+                promo.setTituloPromo(rs.getString("tituloPromo"));
+                promo.setDescripcionPromo(rs.getString("descripcionPromo"));
+                promo.setLinkPromo(rs.getString("linkPromo"));
+                promo.setFechaPublicacion(rs.getDate("fechaPublicacion"));
+                promo.setFechaInicio(rs.getDate("fechaInicio"));
+                promo.setFechaFin(rs.getDate("fechaFin"));
+                promo.setCorreoUsuario(rs.getString("Usuario_correoUsuario"));
+                System.out.println("Imprimir nombre promo");
+                System.out.println("NOMBRE PROMO: "+promo.getTituloPromo());
+                
+                listaPromo.add(promo);
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        //retorna lo que se selecciono
+        return listaPromo;
+}
 }

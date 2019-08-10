@@ -13,8 +13,10 @@ and open the template in the editor.
 
         <title>Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- <h:outputStylesheet library="webjars" name="font-awesome/5.0.0/css/font-awesome.min-jsf.css" /> -->
+
     </h:head>
-    <body style="background-color: white">
+    <body>
         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
         <h:form >
             <p:menubar style="margin:1px 1px 1px 1px;">
@@ -24,30 +26,30 @@ and open the template in the editor.
                 <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
                 <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Mis Me Gusta" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Mis Favoritos" action="favoritePromos.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
                     <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
-                    <p:commandButton type="button" value="#{controllerUsuario.retornaNombrePorCorreo()}" style="height: 35px; margin:20px 10px 1px 1px;" />
+                    <p:commandButton value="#{controllerUsuario.retornaNombrePorCorreo()}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
                     <p:commandButton  process="myFormField1 myFormField2 @this"  value="Cerrar Sesion" style="height: 35px; margin:20px 10px 1px 1px; 
                                       background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
                                       action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
                 </f:facet>
             </p:menubar>
-            <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
-        </h:form>
 
+            <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
+        </h:form> 
 
         <!-- <"AGREGAR PROMO" POP-UP FORM ////////////////////////////////////////////////////////////////////////////////////////// -->
 
         <h:form>        
-            <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Agregar Promo" style="position: absolute">
+            <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="Agregar Promo" >
                 <p:graphicImage name="img/buttonAdd.png" />
             </h:outputLink>
 
             <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
-            <p:dialog header="Agregar Promo" widgetVar="dlg" resizable="true" position="absolute">
+            <p:dialog header="Agregar Promo" widgetVar="dlg" resizable="true">
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputLabel for="Titulo" value="Titulo:" />
                     <p:inputText id="titulo" value="#{controllerPromo.nuevaPromo.tituloPromo}" required="true" label="titulo" />
@@ -84,70 +86,93 @@ and open the template in the editor.
             </p:dialog>    
         </h:form>
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
+
         <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
-        <style type="text/css"> 
-            /*demo*/
-            .ui-dataview-list .ui-dataview-row {
-                border-bottom: 1px solid #A8A8A8;
-                padding: 25px 10px;
-                /* with the exported variables from Nova and Luna Themes*/
-                border-bottom-color: var(--input-border-color, #A8A8A8);
+        <style>
+            .zoom {
+                padding: 2px;
+                transition: transform .2s; /* Animation */
+                margin: 0 auto;
             }
 
+            .link:hover {
+                color:#0A0A2A;
+            }
+
+            .link{
+
+                font-size:14px; 
+                color:#2E9AFE;  
+                text-decoration: underline;
+
+            }
+
+            .description {
+                text-align:left;
+            }   
+            .favouriteButton 
+            {
+                color: transparent;
+                background-color: transparent;
+                border-color: transparent;
+                cursor: pointer
+
+            }
+            .zoom:hover {
+                transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            }
+
+            body {
+                background-color: #FBEFEF;
+            }
+
+            .image {
+                border-radius :10px;
+            }
+
+            .icon {
+
+            }
+
+            .fa-heart 
+            {
+                color: red;
+            }
+
+            icon:hover{
+                transform: scale(1.2);
+            }
+            
+            body{
+                background-image: url();
+
+            }
             .promo {
                 width: 5%;
             }
         </style>
-
-        <h:form id="form">
-            <!-- <FILTRO POR CATEGORIA ////////////////////////////////////////////////////////////////////////////////////////// -->
-            <div align="right"> 
-                <h:outputText value="Filtro por Categoría:  " style="font-weight: bold; font-family: Arial; font-size: 15px"/>
-                <p:selectOneButton value="#{controllerPromo.categoria}" style="font-weight: bold; font-family: ">
-                    <f:selectItem itemLabel="Cocina" itemValue="Cocina" />
-                    <f:selectItem itemLabel="Deportes" itemValue="Deportes" />
-                    <f:selectItem itemLabel="Electronicos" itemValue="Electronicos" />
-                    <f:selectItem itemLabel="Muebles" itemValue="Muebles" />
-                </p:selectOneButton>
-                <p:spacer />
-                <br> </br>
-            </div>
-            <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <p:dataView var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
-                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        gridIcon="pi pi-th-large" listIcon="pi pi-bars" >
+        <div>
+            <br> </br>
+        </div>
+        <h:form id="form" style="width:90%; margin:auto;" >
+            <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                >
                 <p:dataViewListItem>
-                    <h:panelGrid columns="1" style="width:50%" columnClasses="promo"> 
-
-                        <p:outputPanel>
-                            <h:panelGrid columns = "2" cellpadding = "5" >
-                                <h:outputText value="#{promos.tituloPromo}" style="font-weight: bold; font-size: 35px"/>
-                                
-                                
-                                <h:outputText value="#{promos.descripcionPromo}" style="font-weight: bold;padding: 200px "/>
-                                
-                                <h:outputText value="Fecha de inicio de la Promoción:" />
-                                <h:outputText value="    #{promos.fechaInicio}" style="font-weight: bold"/>
-                                
-                                <h:outputText value="Fecha de finalización de la Promoción:" />
-                                <h:outputText value="    #{promos.fechaFin}" style="font-weight: bold"/>
-                                
-                                <h:outputText value="Fecha de publicación de la Promoción:" />
-                                <h:outputText value="    #{promos.fechaPublicacion}" style="font-weight: bold"/>
-                                
-                                <h:outputText value="Link:" />
-                                <h:outputText value="    #{promos.linkPromo}" style="font-weight: bold"/>
-                                
-                                <h:column />
-                                
-                                <h:outputText value="Propietario de la Promo: #{promos.correoUsuario}" style="font-weight: bold; padding-left: 100px "/>
-                            </h:panelGrid>
-                        </p:outputPanel>
+                <h:panelGrid columns="1" style="width:50%" columnClasses="promos">
+                <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
+                    <h:panelGrid columns="2" style="width:100%;">
+                            <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
+                            <h:outputText value="#{promos.linkPromo}" class="link"/> <div></div>
+                            <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
+                        <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title="" image ="img/heart.png" class ="favouriteButton">
+                        </p:commandButton>
                     </h:panelGrid>
+                </p:panel>
+                  </h:panelGrid>
                 </p:dataViewListItem>
-            </p:dataView>
+            </p:dataGrid>
         </h:form>
-        <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
-
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     </body>
 </html>
