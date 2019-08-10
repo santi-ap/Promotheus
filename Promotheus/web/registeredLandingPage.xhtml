@@ -112,11 +112,11 @@ and open the template in the editor.
 }   
 .favouriteButton 
 {
-    color: transparent;
     background-color: transparent;
     border-color: transparent;
-    cursor: pointer
-
+    font-size: 150% !important;
+    
+    
 }
 .zoom:hover {
   transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
@@ -168,7 +168,7 @@ icon:hover{
                         <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
                         <h:outputText value="#{promos.linkPromo}" class="link"/> <div></div>
                         <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
-                        <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title="" image ="img/heart.png" class ="favouriteButton">
+                        <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title ="♥" class="favouriteButton">
                         </p:commandButton>
                     </h:panelGrid>
                     
