@@ -5,6 +5,7 @@ import com.bsod.promotheus.usuario.Promo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -15,7 +16,6 @@ import javax.faces.bean.ViewScoped;
  * @author Wendell Monge
  */
 @ManagedBean(name = "DataGridView")
-@ViewScoped
 @SessionScoped
 public class DataGridView implements Serializable {
 
@@ -23,16 +23,20 @@ public class DataGridView implements Serializable {
 
     private Promo selectedPromo;
 
-    @ManagedProperty("#{ServicioPromo}")
+    //@ManagedProperty("#{ServicioPromo}")
     private ServicioPromo service = new ServicioPromo();
     private ControllerUsuario cu = new ControllerUsuario();
 
+    public DataGridView() {
+    }
+
+    @PostConstruct
     public void init() {
         promos = service.selectAllPromos();
     }
 
     public List<Promo> getPromos() {
-        this.init();
+        //this.init();
         return promos;
     }
 

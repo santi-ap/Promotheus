@@ -16,7 +16,6 @@ import javax.faces.bean.ViewScoped;
  * @author Wendell Monge
  */
 @ManagedBean(name = "DataGridViewUserPromo")
-@ViewScoped
 @SessionScoped
 public class DataGridViewUserPromo implements Serializable {
 
@@ -24,7 +23,7 @@ private ArrayList<Promo> promos;
 
 private Promo selectedPromo;
      
-    @ManagedProperty("#{ServicioPromo}")
+    
     private ServicioPromo service = new ServicioPromo();
     
     @ManagedProperty("#{controllerUsuario}")

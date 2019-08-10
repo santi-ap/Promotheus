@@ -24,9 +24,6 @@ import javax.faces.bean.ViewScoped;
  * @author Asus
  */
 
-@ManagedBean (name = "ServicioPromo")
-@ViewScoped
-@SessionScoped
 public class ServicioPromo extends Servicio implements InterfaceDAO {
 
     @Override
