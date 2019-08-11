@@ -10,16 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author DacordMachine
  */
-@ManagedBean (name="ServicioUsuario_has_Favoritos")
-@ViewScoped
 @SessionScoped
 public class ServicioUsuario_has_Favoritos extends Servicio implements InterfaceDAO {
 
