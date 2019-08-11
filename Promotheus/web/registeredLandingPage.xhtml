@@ -100,13 +100,15 @@ and open the template in the editor.
             }
 
             .link{
-
                 font-size:14px; 
                 color:#2E9AFE;  
                 text-decoration: underline;
 
             }
-
+            .zoom:hover {
+                transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            }
+            
             .description {
                 text-align:left;
             }   
@@ -118,10 +120,7 @@ and open the template in the editor.
                 cursor: pointer
 
             }
-            .zoom:hover {
-                transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-            }
-
+            
             body {
                 background-color: #FBEFEF;
             }
@@ -162,10 +161,10 @@ and open the template in the editor.
                 <h:panelGrid columns="1" style="width:100%" columnClasses="promos">
                 <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
                     <h:panelGrid columns="2" style="width:100%;">
-                            <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
-                            <h:outputText value="#{promos.linkPromo}" class="link"/> <div></div>
-                            <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
-                        <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title="" image ="img/heart.png" class ="favouriteButton">
+                        <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
+                        <h:outputText value="#{promos.linkPromo}" class="link"/> <div></div>
+                        <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
+                        <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title ="♥" class="favouriteButton">
                         </p:commandButton>
                     </h:panelGrid>
                 </p:panel>
