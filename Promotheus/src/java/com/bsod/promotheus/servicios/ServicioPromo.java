@@ -6,19 +6,11 @@
 package com.bsod.promotheus.servicios;
 
 import com.bsod.promotheus.usuario.Promo;
-import static com.sun.mail.imap.protocol.INTERNALDATE.format;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-
 /**
  *
  * @author Asus
