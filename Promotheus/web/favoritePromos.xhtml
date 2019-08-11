@@ -70,7 +70,7 @@ icon:hover{
 </style>
         
         
-         <h:form >
+         <h:form style="position:fixed; top:0px; left:0px; width:100%; margin:0px;">
             <p:menubar style="margin:1px 1px 1px 1px;">
                 <p:menuitem>
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
@@ -102,10 +102,12 @@ icon:hover{
    </style>
 
    <div>
+       <br> </br> 
        <br> </br>
+       <br></br>
    </div>
-        <h:form id="form" style="width:90%; margin:auto;" >
-
+        <h:form id="form" style="width:90%; margin:auto; top:0px;" >
+ 
             <p:dataGrid var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
                         rows="12" paginator="false" id="promoFav"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
