@@ -114,8 +114,7 @@ and open the template in the editor.
             <p:commandButton value="Filtrar" action="userPromosPage.xhtml?faces-redirect=true" style="height: 29px; margin:3px 10px 1px 10px;" />
             <br> </br>
             <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
-                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                >
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
                 <p:dataViewListItem>
                 <h:panelGrid columns="1" style="width:100%" columnClasses="promos">
                 <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
