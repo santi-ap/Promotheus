@@ -6,7 +6,7 @@
 package com.bsod.promotheus.servicios;
 
 import com.bsod.promotheus.usuario.Promo;
-import static com.sun.mail.imap.protocol.INTERNALDATE.format;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
