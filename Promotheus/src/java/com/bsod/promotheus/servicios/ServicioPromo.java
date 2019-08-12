@@ -268,8 +268,6 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
                 promo.setFechaInicio(rs.getDate("fechaInicio"));
                 promo.setFechaFin(rs.getDate("fechaFin"));
                 promo.setCorreoUsuario(rs.getString("Usuario_correoUsuario"));
-                System.out.println("Imprimir nombre promo");
-                System.out.println("NOMBRE PROMO: "+promo.getTituloPromo());
                 
                 listaPromo.add(promo);
             }
@@ -288,4 +286,38 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
         //retorna lo que se selecciono
         return listaPromo;
 }
+       
+       public ArrayList<Promo> selectPromosCategorias(String categoria) {
+
+        ArrayList<Promo> listaPromo = new ArrayList();
+
+        this.conectar();
+
+        try {
+
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Promo where Categoria_nombreCategoriaPromo = '"+ categoria +"';");
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Promo promo = new Promo();
+                promo.setId(rs.getInt("idPromo"));
+                promo.setTituloPromo(rs.getString("tituloPromo"));
+                promo.setDescripcionPromo(rs.getString("descripcionPromo"));
+                promo.setLinkPromo(rs.getString("linkPromo"));
+                promo.setFechaPublicacion(rs.getDate("fechaPublicacion"));
+                promo.setFechaInicio(rs.getDate("fechaInicio"));
+                promo.setFechaFin(rs.getDate("fechaFin"));
+                promo.setCorreoUsuario(rs.getString("Usuario_correoUsuario"));
+                
+                listaPromo.add(promo);
+            }
+
+        } catch (SQLException e) {
+
+            e.getErrorCode();
+
+        }
+        return listaPromo;
+    }
 }

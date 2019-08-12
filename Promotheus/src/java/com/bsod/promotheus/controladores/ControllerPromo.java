@@ -9,7 +9,6 @@ import com.bsod.promotheus.servicios.Servicio;
 import com.bsod.promotheus.servicios.ServicioPromo;
 import com.bsod.promotheus.servicios.ServicioUsuario_has_Favoritos;
 import com.bsod.promotheus.usuario.Promo;
-import static com.sun.javafx.logging.PulseLogger.addMessage;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -27,9 +26,9 @@ public class ControllerPromo {
     private Promo nuevaPromo = new Promo();
     private String categoria;
     private String myFav;
-    
-    
+    private String eleccion;
 
+    
     public ControllerPromo () 
     {
         this.servicioPromo = new ServicioPromo ();
@@ -69,6 +68,14 @@ public class ControllerPromo {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+    
+    public String getEleccion() {
+        return eleccion;
+    }
+
+    public void setEleccion(String eleccion) {
+        this.eleccion = eleccion;
     }
     
     public void guardarPromo (String correoUsuario)
@@ -123,7 +130,4 @@ public class ControllerPromo {
          
         context.addMessage(null, new FacesMessage("Success",  "Promo Insertada en la lista de favoritos." ) );
     }
-    
-    
-   
 }
