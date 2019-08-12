@@ -13,10 +13,24 @@ and open the template in the editor.
 
         <title>Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       <!-- <h:outputStylesheet library="webjars" name="font-awesome/5.0.0/css/font-awesome.min-jsf.css" /> -->
+        <!-- <h:outputStylesheet library="webjars" name="font-awesome/5.0.0/css/font-awesome.min-jsf.css" /> -->
 
     </h:head>
     <body>
+
+        <!-- Load Facebook SDK for JavaScript -->
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v3.0";
+                ;
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
         <h:form >
             <p:menubar style="margin:1px 1px 1px 1px;">
@@ -77,91 +91,102 @@ and open the template in the editor.
                     <h:outputLabel for="date2" value="Fecha en que Termina la Promo: " />
                     <p:calendar id="dataFin" value="#{controllerPromo.nuevaPromo.fechaFin}" />
 
+                    <!-- Your share button code -->
+
+
                     <f:facet name="footer">
                         <p:commandButton value="Agregar" update="growl" action="#{controllerPromo.guardarPromo(controllerUsuario.correoInput)}" />
 
                     </f:facet>  
                 </h:panelGrid>
-            </p:dialog>    
+            </p:dialog> 
+            <div width="500px" class="fb-share-button" 
+                 style="margin:1px 1px 1px 1300px;"
+                 data-href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F9f69e2ea.ngrok.io%2FPromotheus%2Ffaces%2FguestLandingPage.xhtml&amp;src=sdkpreparse"
+                 data-layout="button" align="right">
+            </div>
         </h:form>
+        
+            
+        
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
 
 
         <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
-       <style>
-.zoom {
-  padding: 2px;
-  transition: transform .2s; /* Animation */
-  margin: 0 auto;
-}
-
-.link:hover {
-    color:#0A0A2A;
-}
-
-.link{
-    
-    font-size:14px; 
-    color:#2E9AFE;  
-    text-decoration: underline;
-    
-}
-
-.description {
-    text-align:left;
-}   
-.favouriteButton 
-{
-    color: transparent;
-    background-color: transparent;
-    border-color: transparent;
-    cursor: pointer
-
-}
-.zoom:hover {
-  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-
-body {
-    background-color: #FBEFEF;
-}
-
-.image {
-    border-radius :10px;
-}
-
-.icon {
-    
-}
-
-.fa-heart 
-{
-    color: red;
-}
-
-icon:hover{
-    transform: scale(1.2);
-}
-
-  
-            
-            body{
-                background-image: url();
-             
+        <style>
+            .zoom {
+                padding: 2px;
+                transition: transform .2s; /* Animation */
+                margin: 0 auto;
             }
 
-</style>
+            .link:hover {
+                color:#0A0A2A;
+            }
 
-               <div>
-       <br> </br>
-   </div>
+            .link{
+
+                font-size:14px; 
+                color:#2E9AFE;  
+                text-decoration: underline;
+
+            }
+
+            .description {
+                text-align:left;
+            }   
+            .favouriteButton 
+            {
+                color: transparent;
+                background-color: transparent;
+                border-color: transparent;
+                cursor: pointer
+
+            }
+            .zoom:hover {
+                transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            }
+
+            body {
+                background-color: #FBEFEF;
+            }
+
+            .image {
+                border-radius :10px;
+            }
+
+            .icon {
+
+            }
+
+            .fa-heart 
+            {
+                color: red;
+            }
+
+            icon:hover{
+                transform: scale(1.2);
+            }
+
+
+
+            body{
+                background-image: url();
+
+            }
+
+        </style>
+
+        <div>
+            <br> </br>
+        </div>
         <h:form id="form" style="width:90%; margin:auto;" >
             <p:dataGrid var="promos" value="#{DataGridView.promos}" columns="3" layout="grid"
                         rows="12" paginator="false" id="promos"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16"
                         >
-                
+
 
                 <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
                     <h:panelGrid columns="2" style="width:100%;">
@@ -170,15 +195,16 @@ icon:hover{
                         <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
                         <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title="" image ="img/heart.png" class ="favouriteButton">
                         </p:commandButton>
+
                     </h:panelGrid>
-                    
+
                 </p:panel>
 
-        </p:dataGrid>
-            
+            </p:dataGrid>
+
         </h:form>
 
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-        
+
     </body>
 </html>
