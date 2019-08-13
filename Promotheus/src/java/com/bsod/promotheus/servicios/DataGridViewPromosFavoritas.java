@@ -13,20 +13,17 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author DacordMachine
  */
 @ManagedBean (name="DataGridViewPromosFavoritas")
-@ViewScoped
 @SessionScoped
 public class DataGridViewPromosFavoritas implements Serializable{
     
     private ArrayList<Promo> promoFavoritas;
      
-    @ManagedProperty("#{ServicioUsuario_has_Favoritos}")
     private ServicioUsuario_has_Favoritos service = new ServicioUsuario_has_Favoritos();
     
     @ManagedProperty("#{controllerUsuario}")

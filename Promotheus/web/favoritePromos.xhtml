@@ -70,12 +70,23 @@ icon:hover{
 </style>
         
         
-        <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
-        <h:form >
+         <h:form style="position:fixed; top:0px; left:0px; width:100%; margin:0px;">
             <p:menubar style="margin:1px 1px 1px 1px;">
                 <p:menuitem>
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
                 </p:menuitem>
+                <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
+                <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Mis Favoritos" action="favoritePromos.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
+                <f:facet name="options">
+                    <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
+                    <p:commandButton value="#{controllerUsuario.nombreUsuarioCorreo}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
+                    <p:commandButton  process="myFormField1 myFormField2 @this"  value="Cerrar Sesion" style="height: 35px; margin:20px 10px 1px 1px; 
+                                      background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
+                                      action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
+                </f:facet>
             </p:menubar>
             <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
         </h:form>
@@ -91,10 +102,12 @@ icon:hover{
    </style>
 
    <div>
+       <br> </br> 
        <br> </br>
+       <br></br>
    </div>
-        <h:form id="form" style="width:90%; margin:auto;" >
-
+        <h:form id="form" style="width:90%; margin:auto; top:0px;" >
+ 
             <p:dataGrid var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
                         rows="12" paginator="false" id="promoFav"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

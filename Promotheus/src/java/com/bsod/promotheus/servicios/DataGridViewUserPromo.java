@@ -4,12 +4,10 @@ import com.bsod.promotheus.controladores.ControllerUsuario;
 import com.bsod.promotheus.usuario.Promo;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 /**
  *
@@ -22,8 +20,7 @@ public class DataGridViewUserPromo implements Serializable {
 private ArrayList<Promo> promos;
 
 private Promo selectedPromo;
-     
-    
+
     private ServicioPromo service = new ServicioPromo();
     
     @ManagedProperty("#{controllerUsuario}")
@@ -65,6 +62,4 @@ private Promo selectedPromo;
     public void setSelectedPromo(Promo selectedPromo) {
         this.selectedPromo = selectedPromo;
     }
-
-    
 }
