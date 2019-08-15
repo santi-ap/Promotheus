@@ -10,7 +10,7 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Promotheus Visitante</title>
+        <title>Categorías</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
@@ -21,11 +21,13 @@ and open the template in the editor.
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
                 </p:menuitem>
                 <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
-                <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true"style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Mis Me Gusta" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
                     <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                    <p:commandButton value="#{controllerUsuario.nombreUsuarioCorreo}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
                     <p:commandButton  process="myFormField1 myFormField2 @this"  value="Ingresar" style="height: 35px; margin:1px 10px 1px 1px; 
                                       background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
                                       action="index.xhtml?faces-redirect=true" update="@form" ajax="false"/>
@@ -34,12 +36,6 @@ and open the template in the editor.
             <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->  
         </h:form>
 
-        <h:form>        
-            <p:commandLink action="#{controllerUsuario.redirectToLogin()}">
-                <h:graphicImage name="img/buttonAdd.png" />
-            </p:commandLink>
-        </h:form>
-        
         <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
         <style>
             .zoom {
@@ -108,9 +104,17 @@ and open the template in the editor.
             <br> </br>
         </div>
         <h:form id="form" style="width:90%; margin:auto;" >
+            <h:outputText value="Filtro por categoria: " style="font-family: Arial; font-size: 20px; font-weight: bold"/>
+            <p:selectOneMenu id="CategoriaComboBox"  value="#{controllerPromo.categoria}"
+                    dynamic="true"  style="min-width:150px; width:188px;"> // IN VALUE WILL MAKE THE ATRIBUTE EQUAL THE SELECTED CAT
+                <f:selectItem itemLabel="Escoja una categoria" itemValue="" />
+                <f:selectItems value="#{controllerCategoria.categorias}" var="categoria" 
+                    itemLabel="#{categoria}" itemValue="#{controllerCategoria.categoria}"/> //IN VALUE CALLS LIST OF CATEGORIES TO PRINT IN THE COMBO BOX
+            </p:selectOneMenu>
+            <p:commandButton value="Filtrar" action="userPromosPage.xhtml?faces-redirect=true" style="height: 29px; margin:3px 10px 1px 10px;" />
+            <br> </br>
             <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
-                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                >
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
                 <p:dataViewListItem>
                 <h:panelGrid columns="1" style="width:100%" columnClasses="promos">
                 <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 

@@ -15,40 +15,75 @@ and open the template in the editor.
     <h:head >
         <title>Registro Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="jquery-1.12.4.min.js"></script>0
     </h:head >
-    <h:body style="background-color:teal;">
+    <h:body>
+        
+        <style type="text/css">
+            body {
+            
+                background-color: #CB022C;
+                
+                
+                
+            }
+                      
+               .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            }
+            
+            .fontForm {
+                
+                 color:white;
+                 font-size:18px;
+                 
+                 text-shadow: 0px 4px 4px 1px #3B0B0B;
+                  font-family: "calibri";
+                
+            }
+            
+        </style>
+        
+        <script>
+            $(document).ready(function(){
+                $("#form1").hide().show(1000);
+            });
+        </script>
+            
         <center>
-            <h:form id="form1" class="form1">
+            <h:form id="form1" class="form1" style="display:none;">
                 <!--<p:growl id="growl" showDetail="true" sticky="true" />--> 
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-                <style type="text/css">
-                    .ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
-                        text-align: center;
-                    }
-                </style>
-                <p:panelGrid columns="2">
+         
+                <div style="border-radius: 10px; padding:10px; font-color:white;">
+                <h:panelGrid columns="2" id="pG1" style="border-radius:10px; margin:5px; opacity:40%; font-color: white;">
                     <f:facet name="header">
-                        <h3>Registro</h3>
+                        <h3 class="fontForm" style="font-size:30px; box-shadow: 0px 1px 2px 1px #3B0B0B;">REGISTRAR</h3>
                     </f:facet>
 
-                    <h:outputText value="Nombre:" />
+                    <h:outputText value="Nombre:" class="fontForm"/>
                     <p:inputText id="nombre" value="#{controllerUsuario.nombreInput}"  />
 
-                    <h:outputText value="Correo:" />
+                    <h:outputText value="Correo:" class="fontForm"/>
                     <p:inputText id="correo" value="#{controllerUsuario.correoInput}" />
 
-                    <h:outputText value="Contrasenna:" />
+                    <h:outputText value="Contraseña:" class="fontForm"/>
                     <p:password id="contraseña" value="#{controllerUsuario.passInput}" redisplay="true" />
                     
-                    <h:outputText value="Repetir Contrasenna:" />
+                    <h:outputText value="Repetir Contraseña:" class="fontForm"/>
                     <p:password id="contraseña2" value="#{controllerUsuario.passDosInput}" redisplay="true" />
 
-                </p:panelGrid>
+                </h:panelGrid>
+                </div>
                 <br></br>
-                <p:commandButton value="Register" action="#{controllerUsuario.registrar()}" update="@form"/>
-                <p:commandButton value="Cancelar" action="#{controllerUsuario.cancelarRegistro()}" update="@form"/>
+                <p:commandButton value="Register" action="#{controllerUsuario.registrar()}" update="@form" style="height:35px; margin:5px;"/>
+                <p:commandButton value="Cancelar" action="#{controllerUsuario.cancelarRegistro()}" update="@form" style="height:35px; margin:5px;"/>
                 <br></br>   <br></br>
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- google button -->
                 <script type="text/javascript"><!-- this is to create a javascript space-->

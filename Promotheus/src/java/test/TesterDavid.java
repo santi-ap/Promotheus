@@ -9,6 +9,7 @@ import com.bsod.promotheus.controladores.ControllerCategoria;
 import com.bsod.promotheus.servicios.ServicioCategoria;
 import com.bsod.promotheus.controladores.ControllerCategoria;
 import com.bsod.promotheus.controladores.ControllerPromo;
+import com.bsod.promotheus.servicios.DataGridViewUserPromo;
 import com.bsod.promotheus.servicios.ServicioPromo;
 import java.util.ArrayList;
 
@@ -26,15 +27,24 @@ public class TesterDavid {
         ControllerCategoria cc = new ControllerCategoria();
         ServicioPromo serP = new ServicioPromo();
         ControllerPromo cp = new ControllerPromo();
+        DataGridViewUserPromo dg = new DataGridViewUserPromo();
+        ServicioPromo service = new ServicioPromo();
 
-        cp.setServicioPromo(serP);
-        cc.setServicioCategoria(sc);
+//        cp.setServicioPromo(serP);
+//        cc.setServicioCategoria(sc);
+//
+//        ArrayList<String> cat = new ArrayList<>();
+//        cat = cc.getServicioCategoria().selectNombreCategoria();
+//        System.out.println(cat);
+//        System.out.println("\n");
+//        System.out.println(sc.select("nombreCategoria", "nombreCategoria", " Electronicos"));
+       // System.out.println(service.selectAll("Usuario_correoUsuario", "davidtest@test"));
 
-        ArrayList<String> cat = new ArrayList<>();
-        cat = cc.getServicioCategoria().selectNombreCategoria();
-        System.out.println(cat);
-        System.out.println("\n");
-        System.out.println(sc.select("nombreCategoria", "nombreCategoria", " Electronicos"));
+//        dg.init();
+//        dg.setUserPromo();
+//        System.out.println(dg.getUserPromo());
+
+        System.out.println(service.selectAllTypePromo("Usuario_correoUsuario", "davidtest@test"));
     }
 
 }

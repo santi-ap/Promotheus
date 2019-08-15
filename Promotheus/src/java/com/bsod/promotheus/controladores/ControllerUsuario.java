@@ -27,6 +27,7 @@ public class ControllerUsuario extends Applet{
     private String nombreInput;
     private String passInput;
     private String passDosInput;
+    private String nombreUsuarioCorreo;
     ServicioUsuario su = new ServicioUsuario();
 
     
@@ -74,6 +75,14 @@ public class ControllerUsuario extends Applet{
         return su;
     }
 
+    public String getNombreUsuarioCorreo() {
+        return nombreUsuarioCorreo;
+    }
+
+    public void setNombreUsuarioCorreo(String nombreUsuarioCorreo) {
+        this.nombreUsuarioCorreo = nombreUsuarioCorreo;
+    }
+
     public void setSu(ServicioUsuario su) {
         this.su = su;
     }
@@ -112,7 +121,7 @@ public class ControllerUsuario extends Applet{
                   if(!this.verificarPass(s, this.getPassInput())){
                       context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "La contraseña es incorrecta"));
                   } else {
-                  this.retornaNombrePorCorreo();
+                  this.nombreUsuarioCorreo = this.retornaNombrePorCorreo();
                   return "registeredLandingPage.xhtml?faces-redirect=true";
                   }
             }
@@ -128,9 +137,10 @@ public class ControllerUsuario extends Applet{
     
       //Metodo para retornar el nombre del usuario basado en el correo
      public String retornaNombrePorCorreo(){
-       
         return (su.select("nombreUsuario", "correoUsuario", this.getCorreoInput()).toString()); 
     }
+     
+     
  // ----------------------------- TERMINA LOGICA DE LOGEO ---------------------------------------
      
      

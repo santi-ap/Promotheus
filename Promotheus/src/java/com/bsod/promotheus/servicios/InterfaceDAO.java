@@ -6,7 +6,6 @@
 package com.bsod.promotheus.servicios;
 
 import java.util.ArrayList;
-import com.bsod.promotheus.usuario.Usuario;
 
 /**
  *
