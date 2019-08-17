@@ -44,9 +44,10 @@ and open the template in the editor.
                 <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
                     <div width="500px" class="fb-share-button" 
-                 style="margin:1px 50px 1px 1px;"
+                 style="margin:1px 50px 1px 1px; "
                  data-href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F9f69e2ea.ngrok.io%2FPromotheus%2Ffaces%2FguestLandingPage.xhtml&amp;src=sdkpreparse"
-                 data-layout="button" align="right">
+                 data-layout="button" align="right"
+                 data-size="large">
             </div>
                     <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
                     <p:commandButton value="#{controllerUsuario.nombreUsuarioCorreo}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
@@ -235,7 +236,7 @@ and open the template in the editor.
         </div>
         <h:form id="form" style="width:90%; margin:auto;" >
             <p:dataGrid var="promos" value="#{DataGridView.promos}" columns="1" layout="grid"
-                        rows="12" paginator="false" id="promos"
+                        rows="1" paginator="false" id="promos"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16"
                         >
