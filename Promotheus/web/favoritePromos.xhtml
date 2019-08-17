@@ -16,61 +16,61 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <body>
-        
-<style>
-.zoom {
-  padding: 2px;
-  transition: transform .2s; /* Animation */
-  margin: 0 auto;
-}
 
-.link:hover {
-    color:#0A0A2A;
-}
-
-.link{
-    
-    font-size:14px; 
-    color:#2E9AFE;  
-    text-decoration: underline;
-    
-}
-
-.description {
-    text-align:left;
-}
-
-.zoom:hover {
-  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-
-.body{
-    background-image: url('C:\Users\DacordMachine\Desktop\Promotheus\Promotheus\web\resources\img\background.jpg')
-}
-
-.image {
-    border-radius :10px;
-}
-
-.icon {
-    
-}
-
-icon:hover{
-    transform: scale(1.2);
-}
-
-  
-            
-            body{
-                background-image: url();
-             
+        <style>
+            .zoom {
+                padding: 2px;
+                transition: transform .2s; /* Animation */
+                margin: 0 auto;
             }
 
-</style>
-        
-        
-         <h:form style="position:fixed; top:0px; left:0px; width:100%; margin:0px;">
+            .link:hover {
+                color:#0A0A2A;
+            }
+
+            .link{
+
+                font-size:14px; 
+                color:#2E9AFE;  
+                text-decoration: underline;
+
+            }
+
+            .description {
+                text-align:left;
+            }
+
+            .zoom:hover {
+                transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            }
+
+            .body{
+                background-image: url('C:\Users\DacordMachine\Desktop\Promotheus\Promotheus\web\resources\img\background.jpg')
+            }
+
+            .image {
+                border-radius :10px;
+            }
+
+            .icon {
+
+            }
+
+            icon:hover{
+                transform: scale(1.2);
+            }
+
+
+
+            body{
+                background-image: url();
+
+            }
+
+        </style>
+
+
+        <h:form style="position:fixed; top:0px; left:0px; width:100%; margin:0px;">
             <p:menubar style="margin:1px 1px 1px 1px;">
                 <p:menuitem>
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
@@ -95,27 +95,27 @@ icon:hover{
         <!--DatagridView -->
 
 
-    <style type="text/css">
-    .value {
-        font-weight: bold;
-    }
-   </style>
+        <style type="text/css">
+            .value {
+                font-weight: bold;
+            }
+        </style>
 
-   <div>
-       <br> </br> 
-       <br> </br>
-       <br></br>
-   </div>
+        <div>
+            <br> </br> 
+            <br> </br>
+            <br></br>
+        </div>
         <h:form id="form" style="width:90%; margin:auto; top:0px;" >
- 
+
             <p:dataGrid var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
                         rows="12" paginator="false" id="promoFav"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16"
                         >
-                
-                 <f:facet name="header" >
-                      <h:graphicImage name="img/MisFavoritosLogo.png" height="50" />
+
+                <f:facet name="header" >
+                    <h:graphicImage name="img/MisFavoritosLogo.png" height="50" />
                 </f:facet>
 
                 <p:panel header="#{promoFav.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
@@ -127,8 +127,8 @@ icon:hover{
                     </h:panelGrid>
                 </p:panel>
 
-        </p:dataGrid>
-            
+            </p:dataGrid>
+
         </h:form>
 
     </body>

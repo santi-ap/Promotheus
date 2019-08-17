@@ -18,8 +18,6 @@ public class DataGridView implements Serializable {
 
     private ArrayList<Promo> promos;
 
-    private Promo selectedPromo;
-    
     private ServicioPromo service = new ServicioPromo();
 
     public DataGridView() {
@@ -37,13 +35,5 @@ public class DataGridView implements Serializable {
 
     public void setService(ServicioPromo service) {
         this.service = service;
-    }
-
-    public Promo getSelectedPromo() {
-        return selectedPromo;
-    }
-
-    public void setSelectedPromo(Promo selectedPromo) {
-        this.selectedPromo = selectedPromo;
     }
 }

@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
@@ -12,7 +11,6 @@
         <title>Login</title>
     </h:head>
     <h:body>
-        
         <style type="text/css"> 
        
             body {
@@ -30,32 +28,26 @@
             }
           
             .center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.font {
-    
-    color: white;
-    font-size:18px;
-    text-shadow: 2px 2px #3B0B0B;
-    
-}
-
- .fontForm {
-                
-                 color:white;
-                 font-size:18px;
-                 
-                 text-shadow: 0px 4px 4px 1px #3B0B0B;
-                  font-family: "calibri";
-                
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
             }
 
+            .font {
+            color: white;
+            font-size:18px;
+            text-shadow: 2px 2px #3B0B0B; 
+            }
+
+            .fontForm {
+            color:white;
+            font-size:18px;
+            text-shadow: 0px 4px 4px 1px #3B0B0B;
+            font-family: "calibri";  
+            }
         </style>
         
         <script>
@@ -73,7 +65,7 @@
          <h:graphicImage name="img/finallogo2.PNG" height="50" style="border-radius:10px; margin:6px; opacity:40%; box-shadow: 0px 0px 50px 2px #610B0B; "/>
                <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
-                </p:messages>
+               </p:messages>
             
             <h:form id="form1" style="display:none;">
                 <div>
@@ -90,12 +82,11 @@
 
                 </h:panelGrid>
 
-                <p:commandButton value="Log in" 
+                <p:commandButton value="Ingresar" 
                                  action="#{controllerUsuario.Logear()}"
                                  style="height: 35px; margin:2px 10px 1px 1px;"
                                  update="@form"/>
                 <p:commandButton value="Registrarse" action="registerForm.xhtml?faces-redirect=true" style="height: 35px; margin:2px 10px 1px 1px;"/>
-<!--                <p:commandButton value="Olvidé mi contraseña" action="forgotPassForm.xhtml?faces-redirect=true"/>-->
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP" style="margin:5px;"> </div> <!-- button -->
                  <p id="name"></p> 
                 <div id="status"></div>
@@ -111,15 +102,15 @@
                     var myClass = Java.type("com.bsod.promotheus.controladores.controllerUsuario.");
                     myClass.Logear();
                     }
- </script>
-   <script>
-      function myFunction() {
-      gapi.auth2.getAuthInstance().disconnect();
-      location.reload();
-   }
-   </script>
+                </script>
+                <script>
+                    function myFunction() {
+                    gapi.auth2.getAuthInstance().disconnect();
+                    location.reload();
+                    }
+                </script>
                 </div>
-        </h:form>
+            </h:form>
         </div>
     </h:body>
 </html>
