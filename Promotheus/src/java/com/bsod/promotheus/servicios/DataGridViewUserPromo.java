@@ -5,6 +5,7 @@ import com.bsod.promotheus.usuario.Promo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
@@ -12,6 +13,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Wendell Monge
  */
+@ManagedBean(name = "DataGridViewUserPromo")
 @SessionScoped
 public class DataGridViewUserPromo implements Serializable {
 

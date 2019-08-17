@@ -17,6 +17,20 @@ and open the template in the editor.
 
     </h:head>
     <body>
+
+        <!-- Load Facebook SDK for JavaScript -->
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v3.0";
+                ;
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
         <h:form style="position:fixed; top:0px; left:0px; width:100%; margin:0px;">
             <p:menubar>
@@ -29,6 +43,12 @@ and open the template in the editor.
                 <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
+                    <div width="500px" class="fb-share-button" 
+                 style="margin:1px 50px 1px 1px; "
+                 data-href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F9f69e2ea.ngrok.io%2FPromotheus%2Ffaces%2FguestLandingPage.xhtml&amp;src=sdkpreparse"
+                 data-layout="button" align="right"
+                 data-size="large">
+            </div>
                     <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
                     <p:commandButton value="#{controllerUsuario.nombreUsuarioCorreo}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
                     <p:commandButton  process="myFormField1 myFormField2 @this"  value="Cerrar Sesion" style="height: 35px; margin:20px 10px 1px 1px; 
@@ -78,13 +98,20 @@ and open the template in the editor.
                     <h:outputLabel for="date2" value="Fecha en que Termina la Promo: " />
                     <p:calendar id="dataFin" value="#{controllerPromo.nuevaPromo.fechaFin}" />
 
+                    <!-- Your share button code -->
+
+
                     <f:facet name="footer">
                         <p:commandButton value="Agregar" update="growl" action="#{controllerPromo.guardarPromo(controllerUsuario.correoInput)}" />
 
                     </f:facet>  
                 </h:panelGrid>
-            </p:dialog>    
+            </p:dialog> 
+            
         </h:form>
+
+
+
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
 
         <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -108,7 +135,7 @@ and open the template in the editor.
             .zoom:hover {
                 transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
             }
-            
+
             .description {
                 text-align:left;
             }   
@@ -120,7 +147,7 @@ and open the template in the editor.
                 cursor: pointer
 
             }
-            
+
             body {
                 background-color: #FBEFEF;
             }
@@ -141,12 +168,66 @@ and open the template in the editor.
             icon:hover{
                 transform: scale(1.2);
             }
-            
+
+            body{
+                background-image: url();
+            }
+
+            .link:hover {
+                color:#0A0A2A;
+            }
+
+            .link{
+
+                font-size:14px; 
+                color:#2E9AFE;  
+                text-decoration: underline;
+
+            }
+
+            .description {
+                text-align:left;
+            }   
+            .favouriteButton 
+            {
+                color: transparent;
+                background-color: transparent;
+                border-color: transparent;
+                cursor: pointer
+
+            }
+            .zoom:hover {
+                transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            }
+
+            body {
+                background-color: #FBEFEF;
+            }
+
+            .image {
+                border-radius :10px;
+            }
+
+            .icon {
+
+            }
+
+            .fa-heart 
+            {
+                color: red;
+            }
+
+            icon:hover{
+                transform: scale(1.2);
+            }
+
+
+
             body{
                 background-image: url();
 
             }
-            .promo {
+            .promo{
                 width: 5%;
             }
         </style>
@@ -154,24 +235,33 @@ and open the template in the editor.
             <br> </br>
         </div>
         <h:form id="form" style="width:90%; margin:auto;" >
-            <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="16" paginator="true" rowsPerPageTemplate="6,12,16"
-                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                >
+        <p:dataGrid var="promos" value="#{DataGridView.promos}" columns="1" layout="grid"
+                        rows="1" paginator="false" id="promos"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16"
+                        >
                 <p:dataViewListItem>
-                <h:panelGrid columns="1" style="width:100%" columnClasses="promos">
-                <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
-                    <h:panelGrid columns="2" style="width:100%;">
-                        <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
-                        <h:outputText value="#{promos.linkPromo}" class="link"/> <div></div>
-                        <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
-                        <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title ="♥" class="favouriteButton">
-                        </p:commandButton>
-                    </h:panelGrid>
-                </p:panel>
-                  </h:panelGrid>
+                    <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                >
+
+                        <h:panelGrid columns="1" style="width:100%" columnClasses="promos">
+                            <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
+                                <h:panelGrid columns="2" style="width:100%;">
+                                    <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
+                                    <h:outputText value="#{promos.linkPromo}" class="link"/> <div></div>
+                                    <h:outputText value="publicado por: #{promos.correoUsuario} (#{promos.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
+                                    <p:commandButton action="#{controllerPromo.composeMyFav(promos.id, controllerUsuario.correoInput)}" title ="♥" class="favouriteButton">
+                                    </p:commandButton>
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </h:panelGrid>
+                    </p:dataGrid>
                 </p:dataViewListItem>
             </p:dataGrid>
         </h:form>
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+        <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     </body>
 </html>
