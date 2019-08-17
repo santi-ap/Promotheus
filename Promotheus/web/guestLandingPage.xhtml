@@ -20,8 +20,8 @@ and open the template in the editor.
                 <p:menuitem>
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
                 </p:menuitem>
-                <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
-                <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true"style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Inicio" action="guestLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
+                <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
                 <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
@@ -108,7 +108,7 @@ and open the template in the editor.
             <br> </br>
         </div>
         <h:form id="form" style="width:90%; margin:auto;" >
-            <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+            <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="16" paginator="true" rowsPerPageTemplate="6,12,16"
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 >
                 <p:dataViewListItem>

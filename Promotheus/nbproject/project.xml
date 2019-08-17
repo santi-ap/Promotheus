@@ -11,9 +11,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.restfb-2.21.0.jar}</file>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.activation.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -34,7 +31,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.primefaces-7.0.rc3.jar-3}</file>
+                    <file>${file.reference.primefaces-7.0.rc3.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

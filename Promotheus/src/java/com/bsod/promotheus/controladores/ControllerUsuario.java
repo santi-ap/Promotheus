@@ -91,11 +91,7 @@ public class ControllerUsuario extends Applet{
     public boolean existeCorreo(String correoInput) {// al presionar boton acceptar  se busca si el correo ya existe en al base de datos
         String correoBD = su.select("correoUsuario", "correoUsuario", correoInput).toString();
 
-        if (correoInput.equals(correoBD)) {
-            return true;
-        } else {
-            return false;
-        }
+        return correoInput.equals(correoBD);
 
     }
     

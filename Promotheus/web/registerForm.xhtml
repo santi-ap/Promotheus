@@ -9,100 +9,100 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-     <meta name="google-signin-client_id" content="129219007264-n3p15j8v62dumbo0m9mg7f4qikk0s2uk.apps.googleusercontent.com"/> <!-- Specify Client ID -->
-     <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
+    <meta name="google-signin-client_id" content="129219007264-n3p15j8v62dumbo0m9mg7f4qikk0s2uk.apps.googleusercontent.com"/> <!-- Specify Client ID -->
+    <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
 
     <h:head >
         <title>Registro Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script src="jquery-1.12.4.min.js"></script>0
+        <script src="jquery-1.12.4.min.js"></script>
     </h:head >
     <h:body>
-        
+
         <style type="text/css">
             body {
-            
+
                 background-color: #CB022C;
-                
-                
-                
+
+
+
             }
-                      
-               .vertical-center {
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
+
+            .vertical-center {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
             }
-            
+
             .fontForm {
-                
-                 color:white;
-                 font-size:18px;
-                 
-                 text-shadow: 0px 4px 4px 1px #3B0B0B;
-                  font-family: "calibri";
-                
+
+                color:white;
+                font-size:18px;
+
+                text-shadow: 0px 4px 4px 1px #3B0B0B;
+                font-family: "calibri";
+
             }
-            
+
         </style>
-        
+
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
                 $("#form1").hide().show(1000);
             });
         </script>
-            
+
         <center>
             <h:form id="form1" class="form1" style="display:none;">
                 <!--<p:growl id="growl" showDetail="true" sticky="true" />--> 
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
                 </p:messages>
-         
-                <div style="border-radius: 10px; padding:10px; font-color:white;">
-                <h:panelGrid columns="2" id="pG1" style="border-radius:10px; margin:5px; opacity:40%; font-color: white;">
-                    <f:facet name="header">
-                        <h3 class="fontForm" style="font-size:30px; box-shadow: 0px 1px 2px 1px #3B0B0B;">REGISTRAR</h3>
-                    </f:facet>
 
-                    <h:outputText value="Nombre:" class="fontForm"/>
-                    <p:inputText id="nombre" value="#{controllerUsuario.nombreInput}"  />
+                <div style="border-radius: 10px; padding:10px; font-color:white">
+                    <h:panelGrid columns="2" id="pG1" style="border-radius:10px; margin:5px; opacity:40%; font-color: white;">
+                        <f:facet name="header">
+                            <h3 class="fontForm" style="font-size:30px; box-shadow: 0px 1px 2px 1px #3B0B0B;">REGISTRAR</h3>
+                        </f:facet>
 
-                    <h:outputText value="Correo:" class="fontForm"/>
-                    <p:inputText id="correo" value="#{controllerUsuario.correoInput}" />
+                        <h:outputText value="Nombre:" class="fontForm"/>
+                        <p:inputText id="nombre" value="#{controllerUsuario.nombreInput}"  />
 
-                    <h:outputText value="Contraseña:" class="fontForm"/>
-                    <p:password id="contraseña" value="#{controllerUsuario.passInput}" redisplay="true" />
-                    
-                    <h:outputText value="Repetir Contraseña:" class="fontForm"/>
-                    <p:password id="contraseña2" value="#{controllerUsuario.passDosInput}" redisplay="true" />
+                        <h:outputText value="Correo:" class="fontForm"/>
+                        <p:inputText id="correo" value="#{controllerUsuario.correoInput}" />
 
-                </h:panelGrid>
+                        <h:outputText value="Contraseña:" class="fontForm"/>
+                        <p:password id="contraseña" value="#{controllerUsuario.passInput}" redisplay="true" />
+
+                        <h:outputText value="Repetir Contraseña:" class="fontForm"/>
+                        <p:password id="contraseña2" value="#{controllerUsuario.passDosInput}" redisplay="true" />
+
+                    </h:panelGrid>
                 </div>
                 <br></br>
                 <p:commandButton value="Register" action="#{controllerUsuario.registrar()}" update="@form" style="height:35px; margin:5px;"/>
                 <p:commandButton value="Cancelar" action="#{controllerUsuario.cancelarRegistro()}" update="@form" style="height:35px; margin:5px;"/>
                 <br></br>   <br></br>
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- google button -->
-                <script type="text/javascript"><!-- this is to create a javascript space-->
+        <script type="text/javascript"><!-- this is to create a javascript space-->
                     function onSignIn(googleUser) {
-                    var profile = googleUser.getBasicProfile();
-                    var id = profile.getId();
-                    var email = profile.getEmail();
-                    var name = profile.getName();
-                    
-                    document.getElementById("form1:correo").value = email;
-                    document.getElementById("form1:nombre").value = name;
-                    document.getElementById("form1:contraseña").value = id;
-                    document.getElementById("form1:contraseña2").value = id;
-                    document.getElementById("myP").style.visibility = "hidden";
-                    var myClass = Java.type("com.bsod.promotheus.controladores.controllerUsuario.");
-                    myClass.registrar();
+                        var profile = googleUser.getBasicProfile();
+                        var id = profile.getId();
+                        var email = profile.getEmail();
+                        var name = profile.getName();
+
+                        document.getElementById("form1:correo").value = email;
+                        document.getElementById("form1:nombre").value = name;
+                        document.getElementById("form1:contraseña").value = id;
+                        document.getElementById("form1:contraseña2").value = id;
+                        document.getElementById("myP").style.visibility = "hidden";
+                        var myClass = Java.type("com.bsod.promotheus.controladores.controllerUsuario.");
+                        myClass.registrar();
                     }
-                </script>
-            </h:form>
-        </center>
+                            </script>
+                        </h:form>
+                    </center>
     </h:body>
 </html>
