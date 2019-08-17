@@ -19,7 +19,6 @@ import javax.faces.bean.SessionScoped;
  * @author DacordMachine
  */
 @ManagedBean (name="DataGridViewPromosFavoritas")
-@SessionScoped
 public class DataGridViewPromosFavoritas implements Serializable{
     
     private ArrayList<Promo> promoFavoritas;
