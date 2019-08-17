@@ -167,6 +167,7 @@ public class ControllerUsuario extends Applet{
                     u.setNombreUsuario(this.getNombreInput());
                     u.setCorreoUsuario(this.getCorreoInput());
                     u.setPassUsuario(this.getPassInput());
+                    this.setNombreUsuarioCorreo(this.getNombreInput());
                     su.insert(u);
                     System.out.println("Usuario insertado a BD");
                     return this.redirectLandingPage();//despues de registrar, redirecciona al landing page
