@@ -10,15 +10,72 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <meta name="google-signin-client_id" content="129219007264-n3p15j8v62dumbo0m9mg7f4qikk0s2uk.apps.googleusercontent.com"/> <!-- Specify Client ID -->
-    <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
+    <script src="https://apis.google.com/js/platform.js?hl=es" async="" defer=""></script> <!-- Load Google Platform Library -->
 
     <h:head >
         <title>Registro Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <script src="jquery-1.12.4.min.js"></script>0
+        <script src="jquery-1.12.4.min.js"></script>
     </h:head >
     <h:body>
+         <!-- START FACEBOOK LOGIC ////////////// START FACEBOOK LOGIC ////////////// START FACEBOOK LOGIC //////////////-->
+        <div id="fb-root"></div>
+        <script async="anonymous" src="https://connect.facebook.net/es_LA"></script>
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '415543019087655',
+              cookie     : true,
+              xfbml      : true,
+              version    : 'v4.0'
+            });
 
+            
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            }); 
+
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "https://connect.facebook.net/es_LA/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+           
+           function statusChangeCallback(response){
+               if(response.status === 'connected'){
+                   console.log('Logged in and authenticated');
+                   fillRegister();
+               }else{
+                   console.log('Not authenticated');
+               }
+           }
+           
+           
+            function checkLoginState() {
+              FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+              });
+            }
+            
+            function fillRegister(){
+                FB.api('/me?fields=name,email', function(response){
+                    if(response){
+                        console.log(response);
+                        document.getElementById("form1:nombre").value = response.name;
+                        document.getElementById("form1:correo").value = response.email;
+                        document.getElementById("form1:contraseña").value = response.id;
+                        document.getElementById("form1:contraseña2").value = response.id;
+                    }
+                })
+            }
+            
+        </script>
+        <!-- ENDING FACEBOOK LOGIC  //////////////////////////  ENDING FACEBOOK LOGIC  //////////////////////////////////// -->
+        
         <style type="text/css">
             body {
 
@@ -81,10 +138,15 @@ and open the template in the editor.
 
                     </h:panelGrid>
                 </div>
-                <br></br>
                 <p:commandButton value="Register" action="#{controllerUsuario.registrar()}" update="@form" style="height:35px; margin:5px;"/>
                 <p:commandButton value="Cancelar" action="#{controllerUsuario.cancelarRegistro()}" update="@form" style="height:35px; margin:5px;"/>
                 <br></br>   <br></br>
+                
+                <!-- FACEBOOK LOGIN BUTTON ////////////////////////// -->
+                <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="false" scope="public_profile,email"
+                     onlogin="checkLoginState();"></div>
+                <!-- FACEBOOK LOGIN BUTTON ////////////////////////// -->
+                <br></br><br></br>
                 <div class="g-signin2" data-onsuccess="onSignIn" id="myP"> </div> <!-- google button -->
         <script type="text/javascript"><!-- this is to create a javascript space-->
                     function onSignIn(googleUser) {
@@ -102,6 +164,7 @@ and open the template in the editor.
                         myClass.registrar();
                     }
                             </script>
+                
                         </h:form>
                     </center>
     </h:body>

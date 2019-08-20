@@ -20,10 +20,10 @@ and open the template in the editor.
                 <p:menuitem>
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
                 </p:menuitem>
-                <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
-                <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Inicio" action="guestLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
+                <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
                 <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
                     <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
                     <p:commandButton  process="myFormField1 myFormField2 @this"  value="Ingresar" style="height: 35px; margin:1px 10px 1px 1px; 
@@ -34,6 +34,12 @@ and open the template in the editor.
             <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->  
         </h:form>
 
+        <h:form>        
+            <p:commandLink action="#{controllerUsuario.redirectToLogin()}">
+                <h:graphicImage name="img/buttonAdd.png" />
+            </p:commandLink>
+        </h:form>
+        
         <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
         <style>
             .zoom {
