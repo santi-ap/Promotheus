@@ -107,8 +107,7 @@ and open the template in the editor.
             <br></br>
         </div>
         <h:form id="form" style="width:90%; margin:auto; top:0px;" >
-
-            <p:dataGrid var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
+                      <p:dataGrid var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
                         rows="12" paginator="false" id="promoFav"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16"
@@ -122,13 +121,12 @@ and open the template in the editor.
                     <h:panelGrid columns="2" style="width:100%;">
                         <h:outputText value="#{promoFav.descripcionPromo}" class="description"/> <div></div>
                         <h:outputText value="#{promoFav.linkPromo}" class="link"/> <div></div>
-                        <h:outputText value="publicado por: #{promoFav.correoUsuario} (#{promoFav.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
-                        <i class="fa fa-trash icon" aria-hidden="true"></i> 
+                        <h:outputText value="publicado por: #{promoFav.correoUsuario} (#{promoFav.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText> <div></div>
+                        <p:commandButton value="Eliminar" update="@form" action="#{DataGridViewPromosFavoritas.eliminarPromo(promoFav.id, controllerUsuario.correoInput)}"></p:commandButton>
                     </h:panelGrid>
                 </p:panel>
 
             </p:dataGrid>
-
         </h:form>
 
     </body>
