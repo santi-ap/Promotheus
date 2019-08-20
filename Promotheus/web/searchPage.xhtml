@@ -13,8 +13,6 @@ and open the template in the editor.
 
         <title>Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!-- <h:outputStylesheet library="webjars" name="font-awesome/5.0.0/css/font-awesome.min-jsf.css" /> -->
-
     </h:head>
     <body>
         <!-- MENU ////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -155,9 +153,9 @@ and open the template in the editor.
             <br> </br>
         </div>
         <h:form id="formPromo" style="width:90%; margin:auto;" >
-            <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+            <p:dataGrid var="promos" value="#{DataGridViewSearch.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                id="datagrid"
+                id="datagridsearch"
                 >
                 <p:dataViewListItem>
                 <h:panelGrid columns="1" style="width:100%" columnClasses="promos">
@@ -173,7 +171,7 @@ and open the template in the editor.
                   </h:panelGrid>
                 </p:dataViewListItem>
             </p:dataGrid>
-            <p:blockUI block="datagrid" trigger="datagrid">
+            <p:blockUI block="datagridsearch" trigger="datagridsearch">
             CARGANDO MÁS PROMOS<br />
             <p:graphicImage name="img/ajaxLoading.gif"/>
             </p:blockUI>

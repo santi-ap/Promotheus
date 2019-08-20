@@ -108,7 +108,7 @@ and open the template in the editor.
         </div>
         <h:form id="form" style="width:90%; margin:auto; top:0px;" >
 
-            <p:dataGrid var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
+            <p:dataGrid id="favorites" var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
                         rows="12" paginator="false" id="promoFav"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16"
@@ -128,7 +128,10 @@ and open the template in the editor.
                 </p:panel>
 
             </p:dataGrid>
-
+            <p:blockUI block="favoritas" trigger="favoritas">
+            CARGANDO MÁS PROMOS<br />
+            <p:graphicImage name="img/ajaxLoading.gif"/>
+            </p:blockUI>
         </h:form>
 
     </body>

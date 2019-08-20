@@ -115,7 +115,7 @@ and open the template in the editor.
                               update="@form1" ajax="false"/>
             <br> </br>
 
-            <p:dataGrid var="promos" value="#{DataGridViewCategorias.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+            <p:dataGrid id="datagridcategorias" var="promos" value="#{DataGridViewCategorias.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
                 <p:dataViewListItem>
                     <h:panelGrid columns="1" style="width:100%" columnClasses="promos" >
@@ -131,6 +131,10 @@ and open the template in the editor.
                     </h:panelGrid>
                 </p:dataViewListItem>
             </p:dataGrid>
+            <p:blockUI block="datagridcategorias" trigger="datagridcategorias">
+            CARGANDO MÁS PROMOS<br />
+            <p:graphicImage name="img/ajaxLoading.gif"/>
+            </p:blockUI>
         </h:form>
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
