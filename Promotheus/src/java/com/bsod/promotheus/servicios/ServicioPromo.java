@@ -286,19 +286,23 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
         }
         //retorna lo que se selecciono
         return listaPromo;
-}
+    }
        
        public ArrayList<Promo> selectPromosCategorias(String categoria) {
-
         ArrayList<Promo> listaPromo = new ArrayList();
-
-        this.conectar();
-
+        ResultSet rs = null;
+        Statement stmt=null;
         try {
+            super.conectar();
+            System.out.println("Creando statement...");
+            stmt=conn.createStatement();
+            String sql;
 
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Promo where Categoria_nombreCategoriaPromo = '"+ categoria +"';");
-
-            ResultSet rs = ps.executeQuery();
+	    //hacemos el select con lo que buscamos, de cual columna y cual valor de la columna
+            sql="SELECT * FROM Promo where Categoria_nombreCategoriaPromo = '"+ categoria +"';";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            rs=preparedStatement.executeQuery(); 
 
             while (rs.next()) {
                 Promo promo = new Promo();
@@ -313,12 +317,62 @@ public class ServicioPromo extends Servicio implements InterfaceDAO {
                 
                 listaPromo.add(promo);
             }
-
-        } catch (SQLException e) {
-
-            e.getErrorCode();
-
+	}catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
+        //retorna lo que se selecciono
+        return listaPromo;
+    }
+       
+    public ArrayList<Promo> selectBusqueda(String busqueda) {
+        ArrayList<Promo> listaPromo = new ArrayList();
+        ResultSet rs = null;
+        Statement stmt=null;
+        try {
+            super.conectar();
+            System.out.println("Creando statement...");
+            stmt=conn.createStatement();
+            String sql;
+
+	    //hacemos el select con lo que buscamos, de cual columna y cual valor de la columna
+            sql="SELECT * FROM Promo Where tituloPromo Like '%"+busqueda+"%' OR descripcionPromo Like '%"+busqueda+"%'";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            rs=preparedStatement.executeQuery(); 
+
+            while (rs.next()) {
+                Promo promo = new Promo();
+                promo.setId(rs.getInt("idPromo"));
+                promo.setTituloPromo(rs.getString("tituloPromo"));
+                promo.setDescripcionPromo(rs.getString("descripcionPromo"));
+                promo.setLinkPromo(rs.getString("linkPromo"));
+                promo.setFechaPublicacion(rs.getDate("fechaPublicacion"));
+                promo.setFechaInicio(rs.getDate("fechaInicio"));
+                promo.setFechaFin(rs.getDate("fechaFin"));
+                promo.setCorreoUsuario(rs.getString("Usuario_correoUsuario"));
+                
+                listaPromo.add(promo);
+            }
+	}catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            try {
+                rs.close();
+                stmt.close();
+                super.desconectar();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        //retorna lo que se selecciono
         return listaPromo;
     }
 }
