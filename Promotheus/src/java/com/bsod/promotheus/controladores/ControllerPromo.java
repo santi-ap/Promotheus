@@ -98,6 +98,21 @@ public class ControllerPromo {
         }
     }
     
+    public void redirectTelegram ()
+    {
+       try {
+            HttpServletRequest request = (HttpServletRequest) FacesContext
+                    .getCurrentInstance().getExternalContext().getRequest();
+            FacesContext
+                    .getCurrentInstance()
+                    .getExternalContext()
+                    .redirect(
+                            request.getContextPath()
+                             + "https://web.telegram.org/#/im?p=@promotheus_bot?faces-redirect=true");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     /**
