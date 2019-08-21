@@ -8,8 +8,8 @@ package com.bsod.promotheus.controladores;
 import com.bsod.promotheus.servicios.Servicio;
 import com.bsod.promotheus.servicios.ServicioPromo;
 import com.bsod.promotheus.servicios.ServicioUsuario_has_Favoritos;
+import com.bsod.promotheus.servicios.DataGridView;
 import com.bsod.promotheus.usuario.Promo;
-import static com.sun.javafx.logging.PulseLogger.addMessage;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -23,13 +23,13 @@ import javax.servlet.http.HttpServletRequest;
 @ManagedBean(name="controllerPromo")
 @SessionScoped
 public class ControllerPromo {
-    private ServicioPromo servicioPromo = new ServicioPromo();
+    private ServicioPromo servicioPromo = new ServicioPromo();;
     private Promo nuevaPromo = new Promo();
     private String categoria;
     private String myFav;
+    private String eleccion;
+    private String busqueda;
     
-    
-
     public ControllerPromo () 
     {
         this.servicioPromo = new ServicioPromo ();
@@ -71,6 +71,22 @@ public class ControllerPromo {
         this.categoria = categoria;
     }
     
+    public String getEleccion() {
+        return eleccion;
+    }
+
+    public void setEleccion(String eleccion) {
+        this.eleccion = eleccion;
+    }
+
+    public String getBusqueda() {
+        return busqueda;
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
+    }
+    
     public void guardarPromo (String correoUsuario)
     {
         
@@ -79,7 +95,6 @@ public class ControllerPromo {
         this.getServicioPromo().insert(this.getNuevaPromo());
         this.setNuevaPromo(new Promo());
         this.redirect("registeredLandingPage");
-        //return "registeredLandingPage.xhtml?faces-redirect=true";
     }
     
     public void redirect(String page)
@@ -138,7 +153,4 @@ public class ControllerPromo {
          
         context.addMessage(null, new FacesMessage("Success",  "Promo Insertada en la lista de favoritos." ) );
     }
-    
-    
-   
 }

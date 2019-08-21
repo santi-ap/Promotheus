@@ -1,9 +1,10 @@
 package com.bsod.promotheus.servicios;
 
-import com.bsod.promotheus.controladores.ControllerUsuario;
+import com.bsod.promotheus.controladores.ControllerPromo;
 import com.bsod.promotheus.usuario.Promo;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -13,25 +14,27 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Wendell Monge
  */
-@ManagedBean(name = "DataGridViewUserPromo")
+@ManagedBean(name = "DataGridViewSearch")
 @SessionScoped
-public class DataGridViewUserPromo implements Serializable {
+public class DataGridViewSearch implements Serializable {
 
-private ArrayList<Promo> promos;
-
-private Promo selectedPromo;
+    private ArrayList<Promo> promos;
 
     private ServicioPromo service = new ServicioPromo();
     
-    @ManagedProperty("#{controllerUsuario}")
-    private ControllerUsuario controller = new ControllerUsuario();
-    
-    @PostConstruct
-    public void init() {
-        promos = service.selectAllTypePromo("Usuario_correoUsuario", this.controller.getCorreoInput());
+    @ManagedProperty("#{controllerPromo}")
+    private ControllerPromo controller = new ControllerPromo();
+
+    public DataGridViewSearch() {
     }
 
-    public ArrayList<Promo> getPromos() {
+    @PostConstruct
+    public void init() {
+        promos = service.selectBusqueda(this.getController().getBusqueda());
+    }
+
+    public List<Promo> getPromos() {
+        this.init();
         return promos;
     }
 
@@ -47,19 +50,11 @@ private Promo selectedPromo;
         this.service = service;
     }
 
-    public ControllerUsuario getController() {
+    public ControllerPromo getController() {
         return controller;
     }
 
-    public void setController(ControllerUsuario controller) {
+    public void setController(ControllerPromo controller) {
         this.controller = controller;
-    }
-
-    public Promo getSelectedPromo() {
-        return selectedPromo;
-    }
-
-    public void setSelectedPromo(Promo selectedPromo) {
-        this.selectedPromo = selectedPromo;
     }
 }

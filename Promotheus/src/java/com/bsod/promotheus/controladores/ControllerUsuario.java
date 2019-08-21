@@ -11,6 +11,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import java.applet.*;
+import netscape.javascript.*;
+import java.awt.*;
 
 /**
  *
@@ -18,7 +21,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name="controllerUsuario")
 @SessionScoped
-public class ControllerUsuario {
+public class ControllerUsuario extends Applet{
     
     private String correoInput;
     private String nombreInput;
@@ -88,11 +91,7 @@ public class ControllerUsuario {
     public boolean existeCorreo(String correoInput) {// al presionar boton acceptar  se busca si el correo ya existe en al base de datos
         String correoBD = su.select("correoUsuario", "correoUsuario", correoInput).toString();
 
-        if (correoInput.equals(correoBD)) {
-            return true;
-        } else {
-            return false;
-        }
+        return correoInput.equals(correoBD);
 
     }
     
@@ -168,6 +167,7 @@ public class ControllerUsuario {
                     u.setNombreUsuario(this.getNombreInput());
                     u.setCorreoUsuario(this.getCorreoInput());
                     u.setPassUsuario(this.getPassInput());
+                    this.setNombreUsuarioCorreo(this.getNombreInput());
                     su.insert(u);
                     System.out.println("Usuario insertado a BD");
                     return this.redirectLandingPage();//despues de registrar, redirecciona al landing page

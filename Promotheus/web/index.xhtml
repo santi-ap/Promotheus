@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
@@ -12,6 +11,62 @@
         <title>Login</title>
     </h:head>
     <h:body>
+        
+        <!-- START FACEBOOK LOGIC ////////////// START FACEBOOK LOGIC ////////////// START FACEBOOK LOGIC //////////////-->
+        <div id="fb-root"></div>
+        <script async="anonymous" src="https://connect.facebook.net"></script>
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '415543019087655',
+              cookie     : true,
+              xfbml      : true,
+              version    : 'v4.0'
+            });
+
+            
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            }); 
+
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "https://connect.facebook.net/es_LA/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+           
+           function statusChangeCallback(response){
+               if(response.status === 'connected'){
+                   console.log('Logged in and authenticated');
+                   fillLogin();
+               }else{
+                   console.log('Not authenticated');
+               }
+           }
+           
+           
+            function checkLoginState() {
+              FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+              });
+            }
+            
+            function fillLogin(){
+                FB.api('/me?fields=name,email', function(response){
+                    if(response){
+                        console.log(response);
+                        document.getElementById("form1:correo").value = response.email;
+                        document.getElementById("form1:contraseña").value = response.id;
+                    }
+                })
+            }
+            
+        </script>
+        <!-- ENDING FACEBOOK LOGIC  //////////////////////////  ENDING FACEBOOK LOGIC  //////////////////////////////////// -->
         
         <style type="text/css"> 
        
@@ -30,32 +85,26 @@
             }
           
             .center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.font {
-    
-    color: white;
-    font-size:18px;
-    text-shadow: 2px 2px #3B0B0B;
-    
-}
-
- .fontForm {
-                
-                 color:white;
-                 font-size:18px;
-                 
-                 text-shadow: 0px 4px 4px 1px #3B0B0B;
-                  font-family: "calibri";
-                
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
             }
 
+            .font {
+            color: white;
+            font-size:18px;
+            text-shadow: 2px 2px #3B0B0B; 
+            }
+
+            .fontForm {
+            color:white;
+            font-size:18px;
+            text-shadow: 0px 4px 4px 1px #3B0B0B;
+            font-family: "calibri";  
+            }
         </style>
         
         <script>
@@ -63,8 +112,7 @@
                 $("#form1").hide().show(900);
             });
         </script>
-        
-        <script src="https://apis.google.com/js/platform.js" async="" defer=""></script> <!-- Load Google Platform Library -->
+        <script src="https://apis.google.com/js/platform.js?hl=es" async="" defer=""></script> <!-- Load Google Platform Library -->
          <h:form style="margin:auto">
 
             <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->        
@@ -73,7 +121,7 @@
          <h:graphicImage name="img/finallogo2.PNG" height="50" style="border-radius:10px; margin:6px; opacity:40%; box-shadow: 0px 0px 50px 2px #610B0B; "/>
                <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />
-                </p:messages>
+               </p:messages>
             
             <h:form id="form1" style="display:none;">
                 <div>
@@ -81,22 +129,29 @@
     
                     
                     <h:outputLabel class="font"><h:outputLabel value="Correo" class="fontForm"/> <br></br><h:outputLabel value="Electrónico" class="fontForm"/></h:outputLabel>
-                    <p:inputText id="correo" value="#{controllerUsuario.correoInput}" style="margin:2px;"/>
+                    <p:inputText id="correo" value="#{controllerUsuario.correoInput}" style="margin:2px;"/> 
                     <p:message for="correo" />
-
-                    <h:outputLabel value="Contraseña" class="fontForm"/>
+                    
+                    <h:outputLabel class="font"><h:outputLabel value="Contraseña" class="fontForm"/></h:outputLabel>
                     <p:password id="contraseña" value="#{controllerUsuario.passInput}" style="margin:2px;"/>
                     <p:message for="contraseña" />
-
-                </h:panelGrid>
-
-                <p:commandButton value="Log in" 
+                
+                    
+                <p:commandButton value="Ingresar" 
                                  action="#{controllerUsuario.Logear()}"
-                                 style="height: 35px; margin:2px 10px 1px 1px;"
+                                 style="height: 35px; width: 91px; margin:2px 10px 1px 1px;"
                                  update="@form"/>
+                
+                <!-- FACEBOOK LOGIN BUTTON ////////////////////////// FACEBOOK LOGIN BUTTON ////////////////////////// FACEBOOK LOGIN BUTTON ////////////////////////// -->
+                
+                    <div class="fb-login-button" data-width="" data-size="medium" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="false" scope="public_profile,email"
+                     onlogin="checkLoginState();"></div>
+                
+                <!-- FACEBOOK LOGIN BUTTON //////////////////////////  FACEBOOK LOGIN BUTTON ////////////////////////// FACEBOOK LOGIN BUTTON //////////////////////////-->
+                <h:outputLabel  class="fontForm"/>
                 <p:commandButton value="Registrarse" action="registerForm.xhtml?faces-redirect=true" style="height: 35px; margin:2px 10px 1px 1px;"/>
-<!--                <p:commandButton value="Olvidé mi contraseña" action="forgotPassForm.xhtml?faces-redirect=true"/>-->
-                <div class="g-signin2" data-onsuccess="onSignIn" id="myP" style="margin:5px;"> </div> <!-- button -->
+                
+                    <div class="g-signin2" data-onsuccess="onSignIn" id="myP" style="margin:5px;"> </div>  <!-- GOOGLE button --> 
                  <p id="name"></p> 
                 <div id="status"></div>
                 <script type="text/javascript"><!-- this is to create a javascript space-->
@@ -111,15 +166,19 @@
                     var myClass = Java.type("com.bsod.promotheus.controladores.controllerUsuario.");
                     myClass.Logear();
                     }
- </script>
-   <script>
-      function myFunction() {
-      gapi.auth2.getAuthInstance().disconnect();
-      location.reload();
-   }
-   </script>
+                </script>
+
+                  <script>
+                     function myFunction() {
+                     gapi.auth2.getAuthInstance().disconnect();
+                     location.reload();
+                  }
+                  </script>
+                
+                
+                </h:panelGrid>
                 </div>
-        </h:form>
+            </h:form>
         </div>
     </h:body>
 </html>

@@ -91,13 +91,10 @@ icon:hover{
        <br> </br>
    </div>
         <h:form id="form" style="width:90%; margin:auto;" >
-            <p:dataGrid var="promos" value="#{DataGridViewUserPromo.promos}" columns="3" layout="grid"
-                        rows="12" paginator="false" id="promos"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="6,12,16"
-                        >
-                
-
+            <p:dataGrid id="userpromos" var="promos" value="#{DataGridViewUserPromo.promos}" columns="3" layout="grid"
+                    rows="12" paginator="false" id="promos"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="6,12,16">
                 <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
                     <h:panelGrid columns="2" style="width:100%;">
                         <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
@@ -106,9 +103,11 @@ icon:hover{
                         <i class="fa fa-trash icon" aria-hidden="true"></i> 
                     </h:panelGrid>
                 </p:panel>
-
-        </p:dataGrid>
-            
+            </p:dataGrid>
+            <p:blockUI block="userpromos" trigger="userpromos">
+            CARGANDO MÁS PROMOS<br />
+            <p:graphicImage name="img/ajaxLoading.gif"/>
+            </p:blockUI>
         </h:form>
 
 
