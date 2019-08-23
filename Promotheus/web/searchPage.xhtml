@@ -13,12 +13,8 @@ and open the template in the editor.
 
         <title>Promotheus</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
-        <!-- <h:outputStylesheet library="webjars" name="font-awesome/5.0.0/css/font-awesome.min-jsf.css" /> -->
-
     </h:head>
     <body>
-
         <!-- Load Facebook SDK for JavaScript -->
         <div id="fb-root"></div>
         <script>(function (d, s, id) {
@@ -42,22 +38,9 @@ and open the template in the editor.
                 <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Mis Favoritos" action="favoritePromos.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
-
-                    <a href="https://web.telegram.org/#/im?p=@promotheus_bot" target="_blank" >NUEVAS PROMOS!</a>
-                 <!--   <p:commandLink value="NUEVAS PROMOS!" onclick="location.href='https://web.telegram.org/#/im?p=@promotheus_bot'" target="_blank" style="height: 35px; margin:20px 10px 1px 1px;"/> -->
-
-                    
-
-                    <div width="500px" class="fb-share-button" 
-                 style="margin:1px 50px 1px 1px; "
-                 data-href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F9f69e2ea.ngrok.io%2FPromotheus%2Ffaces%2FguestLandingPage.xhtml&amp;src=sdkpreparse"
-                 data-layout="button" align="right"
-                 data-size="large">
-            </div>
-                    <p:inputText style="margin:10px 1px 1px 1px;" placeholder="Buscar" value="#{controllerPromo.busqueda}" />
-                    <p:commandButton icon="ui-icon-search" style="font-size: 1em; margin:  1px 600px 1px 5px ; right: 2px" update="@formPromo" ajax="false" action="searchPage.xhtml?faces-redirect=true"/>
+                    <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar" value="#{controllerPromo.busqueda}" />
+                    <p:commandButton icon="ui-icon-search" style="font-size: 1em; margin: 10px 1px 1px ; right: 2px" update="@formPromo" ajax="false" action="searchPage.xhtml?faces-redirect=true"/>
                     <p:commandButton value="#{controllerUsuario.nombreUsuarioCorreo}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
-
                     <p:commandButton  process="myFormField1 myFormField2 @this"  value="Cerrar Sesion" style="height: 35px; margin:20px 10px 1px 1px; 
                             background-color: indianred; border-radius: 5px; border-color: darkred; color: white; font-size: 15px;"
                             action="guestLandingPage.xhtml?faces-redirect=true" update="@form" ajax="false"/>
@@ -105,20 +88,13 @@ and open the template in the editor.
                     <h:outputLabel for="date2" value="Fecha en que Termina la Promo: " />
                     <p:calendar id="dataFin" value="#{controllerPromo.nuevaPromo.fechaFin}" />
 
-                    <!-- Your share button code -->
-
-
                     <f:facet name="footer">
                         <p:commandButton value="Agregar" update="growl" action="#{controllerPromo.guardarPromo(controllerUsuario.correoInput)}" />
 
                     </f:facet>  
                 </h:panelGrid>
-            </p:dialog> 
-            
+            </p:dialog>    
         </h:form>
-
-
-
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->        
 
         <!-- <MOSTRAR LAS PROMOS ////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -142,55 +118,7 @@ and open the template in the editor.
             .zoom:hover {
                 transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
             }
-
-            .description {
-                text-align:left;
-            }   
-            .favouriteButton 
-            {
-                background-color: transparent;
-                border-color: transparent;
-                cursor: pointer
-
-            }
-
-            body {
-                background-color: #FBEFEF;
-            }
-
-            .image {
-                border-radius :10px;
-            }
-
-            .icon {
-
-            }
-
-            .fa-heart 
-            {
-                color: red;
-            }
-
-            icon:hover{
-                transform: scale(1.2);
-            }
-
-            body{
-                background-image: url();
-            }
-
-            .link:hover {
-                color:#0A0A2A;
-            }
-
-            .link{
-
-                font-size:14px; 
-                color:#2E9AFE;  
-                text-decoration: underline;
-
-            }
-
+            
             .description {
                 text-align:left;
             }   
@@ -202,10 +130,7 @@ and open the template in the editor.
                 cursor: pointer
 
             }
-            .zoom:hover {
-                transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-            }
-
+            
             body {
                 background-color: #FBEFEF;
             }
@@ -226,14 +151,12 @@ and open the template in the editor.
             icon:hover{
                 transform: scale(1.2);
             }
-
-
-
+            
             body{
                 background-image: url();
 
             }
-            .promo{
+            .promo {
                 width: 5%;
             }
         </style>
@@ -241,9 +164,9 @@ and open the template in the editor.
             <br> </br>
         </div>
         <h:form id="formPromo" style="width:90%; margin:auto;" >
-            <p:dataGrid var="promos" value="#{DataGridView.promos}" rows="16" paginator="true" rowsPerPageTemplate="6,12,16"
+            <p:dataGrid var="promos" value="#{DataGridViewSearch.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                id="datagrid"
+                id="datagridsearch"
                 >
                 <p:dataViewListItem>
                 <h:panelGrid columns="1" style="width:100%" columnClasses="promos">
@@ -259,11 +182,12 @@ and open the template in the editor.
                   </h:panelGrid>
                 </p:dataViewListItem>
             </p:dataGrid>
-            <p:blockUI block="datagrid" trigger="datagrid">
+            <p:blockUI block="datagridsearch" trigger="datagridsearch">
             CARGANDO MÁS PROMOS<br />
             <p:graphicImage name="img/ajaxLoading.gif"/>
             </p:blockUI>
         </h:form>
+        
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     </body>
 </html>

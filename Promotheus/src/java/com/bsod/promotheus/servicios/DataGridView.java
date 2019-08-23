@@ -15,9 +15,9 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "DataGridView")
 @SessionScoped
 public class DataGridView implements Serializable {
-
+    
     private ArrayList<Promo> promos;
-
+    
     private ServicioPromo service = new ServicioPromo();
 
     public DataGridView() {

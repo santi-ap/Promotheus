@@ -90,7 +90,9 @@ public class ServicioUsuario_has_Favoritos extends Servicio implements Interface
             while (rs.next()) {
 
                 //public Promo(String linkPromo, String tituloPromo, String descripcionPromo, java.util.Date fechaInicio, java.util.Date fechaFin, java.util.Date fechaPublicacion, String correoUsuario)
-                promosFavoritas.add(new Promo(rs.getString(4), rs.getString(2), rs.getString(3), rs.getDate(6), rs.getDate(7), rs.getDate(5), rs.getString(8)));
+                Promo promoNueva = new Promo(rs.getString(4), rs.getString(2), rs.getString(3), rs.getDate(6), rs.getDate(7), rs.getDate(5), rs.getString(8));
+                promoNueva.setId(rs.getInt(1));
+                promosFavoritas.add(promoNueva);
 
             }
 
@@ -100,6 +102,26 @@ public class ServicioUsuario_has_Favoritos extends Servicio implements Interface
 
         }
         return promosFavoritas;
+    }
+    
+    public void deletePromoFavorita(int promoId, String correoUsuario){
+        
+        this.conectar();
+        
+        try {
+            
+            PreparedStatement stmt = conn.prepareStatement("delete" +
+            " from usuario_has_Favoritos" +
+            " where promo_idPromo = "+promoId+" and usuario_correoUsuario = '"+correoUsuario+"';");
+            
+            stmt.execute();
+            
+        } catch(SQLException e){
+            
+            e.getErrorCode();
+            
+        }
+        
     }
 
 }

@@ -20,10 +20,8 @@ and open the template in the editor.
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
                 </p:menuitem>
                 <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
-                <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Mis Favoritos" action="favoritePromos.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
 
                 <f:facet name="options">
                     <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
@@ -91,13 +89,10 @@ icon:hover{
        <br> </br>
    </div>
         <h:form id="form" style="width:90%; margin:auto;" >
-            <p:dataGrid var="promos" value="#{DataGridViewUserPromo.promos}" columns="3" layout="grid"
-                        rows="12" paginator="false" id="promos"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="6,12,16"
-                        >
-                
-
+            <p:dataGrid id="userpromos" var="promos" value="#{DataGridViewUserPromo.promos}" columns="3" layout="grid"
+                    rows="12" paginator="false" 
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="6,12,16">
                 <p:panel header="#{promos.tituloPromo}" style="text-align:center; margin:auto;" class="zoom"> 
                     <h:panelGrid columns="2" style="width:100%;">
                         <h:outputText value="#{promos.descripcionPromo}" class="description"/> <div></div>
@@ -106,9 +101,11 @@ icon:hover{
                         <i class="fa fa-trash icon" aria-hidden="true"></i> 
                     </h:panelGrid>
                 </p:panel>
-
-        </p:dataGrid>
-            
+            </p:dataGrid>
+            <p:blockUI block="userpromos" trigger="userpromos">
+            CARGANDO MÁS PROMOS<br />
+            <p:graphicImage name="img/ajaxLoading.gif"/>
+            </p:blockUI>
         </h:form>
 
 

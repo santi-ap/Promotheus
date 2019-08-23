@@ -21,10 +21,8 @@ and open the template in the editor.
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
                 </p:menuitem>
                 <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
-                <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Mis Me Gusta" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Mis Me Gusta" action="favoritePromos.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
                     <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
                     <p:commandButton  value="Volver" style="height: 35px; margin:1px 10px 1px 1px; 
@@ -115,7 +113,7 @@ and open the template in the editor.
                               update="@form1" ajax="false"/>
             <br> </br>
 
-            <p:dataGrid var="promos" value="#{DataGridViewCategorias.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
+            <p:dataGrid id="datagridcategorias" var="promos" value="#{DataGridViewCategorias.promos}" rows="12" paginator="true" rowsPerPageTemplate="6,12,16"
                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
                 <p:dataViewListItem>
                     <h:panelGrid columns="1" style="width:100%" columnClasses="promos" >
@@ -131,6 +129,10 @@ and open the template in the editor.
                     </h:panelGrid>
                 </p:dataViewListItem>
             </p:dataGrid>
+            <p:blockUI block="datagridcategorias" trigger="datagridcategorias">
+            CARGANDO MÁS PROMOS<br />
+            <p:graphicImage name="img/ajaxLoading.gif"/>
+            </p:blockUI>
         </h:form>
         <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 

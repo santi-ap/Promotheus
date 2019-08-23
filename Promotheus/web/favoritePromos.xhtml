@@ -76,10 +76,8 @@ and open the template in the editor.
                     <h:graphicImage name="img/finallogo2.PNG" height="50" />
                 </p:menuitem>
                 <p:menuitem value="Inicio" action="registeredLandingPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;" />
-                <p:menuitem value="Categorias" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Contactenos" style="margin:20px 1px 1px 10px;"/>
+                <p:menuitem value="Categorias" action="categoriasPage.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
                 <p:menuitem value="Mis Favoritos" action="favoritePromos.xhtml?faces-redirect=true" style="margin:20px 1px 1px 10px;"/>
-                <p:menuitem value="Sobre Nosotros" style="margin:20px 1px 1px 10px;"/>
                 <f:facet name="options">
                     <p:inputText style="margin:20px 10px 1px 1px;" placeholder="Buscar"/>
                     <p:commandButton value="#{controllerUsuario.nombreUsuarioCorreo}" action="userPromosPage.xhtml?faces-redirect=true" style="height: 35px; margin:20px 10px 1px 1px;" />
@@ -108,8 +106,8 @@ and open the template in the editor.
         </div>
         <h:form id="form" style="width:90%; margin:auto; top:0px;" >
 
-            <p:dataGrid var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
-                        rows="12" paginator="false" id="promoFav"
+            <p:dataGrid id="favoritas" var="promoFav" value="#{DataGridViewPromosFavoritas.promoFavoritas}" columns="3" layout="grid"
+                        rows="12" paginator="false"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16"
                         >
@@ -122,13 +120,17 @@ and open the template in the editor.
                     <h:panelGrid columns="2" style="width:100%;">
                         <h:outputText value="#{promoFav.descripcionPromo}" class="description"/> <div></div>
                         <h:outputText value="#{promoFav.linkPromo}" class="link"/> <div></div>
-                        <h:outputText value="publicado por: #{promoFav.correoUsuario} (#{promoFav.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText>
-                        <i class="fa fa-trash icon" aria-hidden="true"></i> 
+                        <h:outputText value="publicado por: #{promoFav.correoUsuario} (#{promoFav.fechaPublicacion})"  style="color: #6E6E6E; font-size: 12px;"></h:outputText> <div></div>
+                        <p:commandButton value="Eliminar" update="@form" action="#{DataGridViewPromosFavoritas.eliminarPromo(promoFav.id, controllerUsuario.correoInput)}"></p:commandButton>
                     </h:panelGrid>
                 </p:panel>
 
             </p:dataGrid>
 
+            <p:blockUI block="favoritas" trigger="favoritas">
+            CARGANDO MÁS PROMOS<br/>
+            <p:graphicImage name="img/ajaxLoading.gif"/>
+            </p:blockUI>
         </h:form>
 
     </body>
